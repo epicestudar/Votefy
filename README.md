@@ -112,64 +112,68 @@ gantt
 ```mermaid
 classDiagram
     class Usuario {
-        +Integer id
-        +String nome
-        +String email
-        +String senha
-        +login()
-        +cadastro()
+        +int id
+        +string nome
+        +string email
+        +string senha
+        +string cidade
+        +post()
+        +put()
+        +delete()
     }
 
-    class Tarefa {
-        +Integer id
-        +String titulo
-        +String descricao
-        +Date prazoMaximo
-        +Boolean tarefaFeita
-        +marcarComoCompletada()
+    class Enquete {
+        +int id
+        +string título
+        +string[] opções
+        +string descrição
+        +string categoria
+        +int usuario_id
+        +get()
+        +post()
+        +put()
+        +delete()
     }
 
-    class Grupo {
-       +Integer id
-       +String nome
-       +adicionarUsuario()
-       +editarUsuario()
-       +atualizarUsuario()
-       +deletarUsuario()
+    class Votacao {
+        +int id
+        +int enquete_id
+        +int usuario_id
+        +string opções[i]
+        +get()
+        +post()
+        +put()
+        +delete()
     }
 
-    class Administrador {
-       +Integer id
-       +String nome
-       +String email
-       +String senha
-    }
+    Usuario "1" -- "0..*" Enquete : "cria"
+    Enquete "1" -- "0..*" Votacao : "possui"
 
-    Usuario "1" --> "muitas" Tarefa : possui
-    Administrador --> Grupo : gerencia
-    Grupo --> Usuario : gerencia
-    Usuario --> Tarefa : controla
-    Grupo --> Usuario : interage com
-    Usuario --> Tarefa : faz
 ```
 <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Diagrama de Uso" alt="Typing SVG" /></a>
 ```mermaid
 flowchart TD
-    A[Administrador] -->|Gerenciar Grupos| B(Gerenciar Grupos)
-    B -->|Adicionar Membros| C(Adicionar Membros ao Grupo)
-    B -->|Remover Membros| D(Remover Membros do Grupo)
-    A -->|Excluir Tarefas| E(Excluir Tarefas)
-    A -->|Gerenciar Tarefas| F(Gerenciar Tarefas)
+    U[Usuário] -->|Criar Conta| A(Registrar-se)
+    A -->|Fazer Login| B(Fazer Login)
+    B -->|Acessar Plataforma| C(Plataforma de Enquetes)
     
-    G[Grupo] -->|Visualizar Tarefas| H(Visualizar Tarefas)
-    J[Usuário] -->|Editar Tarefas| I(Editar Tarefas)
-    I -->|Marcar como Concluída| J1(Marcar Tarefas como Concluídas)
-    J -->|Criar Tarefas| K(Criar Tarefas)
+    C -->|Criar Enquete| D(Criar Nova Enquete)
+    D -->|Adicionar Opções| E(Adicionar Opções à Enquete)
     
-    L[Usuário] -->|Registrar-se| M(Registrar-se)
-    M -->|Fazer Login| N(Fazer Login)
+    C -->|Votar em Enquete| F(Votar em Enquete Existente)
+    F -->|Selecionar Opção| G(Escolher Opção e Confirmar Voto)
+    
+    C -->|Acompanhar Resultados| H(Visualizar Resultados das Enquetes)
+    
+    I[Criador da Enquete] -->|Gerenciar Enquetes| J(Gerenciar Enquetes dos Usuários)
+    J -->|Editar Enquete| K(Editar Detalhes da Enquete)
+    J -->|Excluir Enquete| L(Excluir Enquete)
+    
+    U -->|Editar Perfil| M(Atualizar Informações de Usuário)
+    U -->|Excluir Conta| N(Excluir Conta)
+
 ```
 <br><br><br><br><br>
 
