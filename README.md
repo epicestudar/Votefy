@@ -216,10 +216,12 @@ flowchart TD
 
 **- `Paleta` de Cores:**
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=E60D0DFF&repeat=false&random=false&width=435&lines=E60D0DFF)](https://git.io/typing-svg)
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=12EE7EFF&repeat=false&random=false&width=435&lines=12EE7EFF)](https://git.io/typing-svg)
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FBFF49FF&repeat=false&random=false&width=435&lines=FBFF49FF)](https://git.io/typing-svg)
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FCFFF4FF&repeat=false&random=false&width=435&lines=FCFFF4FF)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=1DA1F2&repeat=false&random=false&width=435&lines=1DA1F2)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=E1E8ED&repeat=false&random=false&width=435&lines=E1E8ED)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=17BF63&repeat=false&random=false&width=435&lines=17BF63)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=657786&repeat=false&random=false&width=435&lines=657786)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FFFFFF&repeat=false&random=false&width=435&lines=FFFFFF)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=E0245E&repeat=false&random=false&width=435&lines=E0245E)](https://git.io/typing-svg)
 
 **- `Fontes` do Nosso Projeto:**
 
