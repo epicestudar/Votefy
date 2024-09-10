@@ -7,7 +7,7 @@
 
 <p align="center">
    <img src="https://img.shields.io/badge/API-PRODUZINDO-red?style=for-the-badge" alt="backend" />
-  <img src="https://img.shields.io/badge/Documentação-FEITO-blue?style=for-the-badge" alt="documentação" />
+  <img src="https://img.shields.io/badge/Documentação-FEITA-blue?style=for-the-badge" alt="documentação" />
   <img src="https://img.shields.io/badge/Protótipos-PRODUZINDO-red?style=for-the-badge" alt="mobile" />
   <img src="https://img.shields.io/badge/Frontend-PRODUZINDO-red?style=for-the-badge" alt="site" />
 </p>
@@ -21,23 +21,23 @@
 
 ### Visão Geral do Projeto
 **Objetivo:**
-Desenvolver uma aplicação web sobre uma plataforma interativa de enquetes, na qual os usuários poderão criar, votar e acompanhar os resultados. Nós utilizaremos tecnologias modernas e práticas de mercado, garantindo segurança, escalabilidade e uma experiência de usuário fluida por meio do React, Next, Node.js, MongoDB, e JWT, criando uma aplicação completa e funcional que pode ser utilizada no mundo real.
+Desenvolver uma aplicação web sobre uma plataforma interativa de `enquetes`, na qual os usuários poderão criar, votar e acompanhar os resultados. Nós utilizaremos tecnologias modernas e práticas de mercado, garantindo segurança, escalabilidade e uma experiência de usuário fluida por meio do React, Next, Node.js, MongoDB, e JWT, criando uma aplicação completa e funcional que pode ser utilizada no mundo real.
 
 **Por Que Este Projeto?**
-A nossa empresa, dedicada a inovar no campo da interação digital, está em processo de criação de uma plataforma de enquetes interativas. Esse projeto visa proporcionar uma experiência envolvente e dinâmica para os usuários, permitindo que eles participem e criem enquetes de maneira intuitiva e interativa. Com o objetivo de transformar a forma como as pessoas coletam e analisam opiniões, precisamos de uma solução tecnológica avançada que ofereça uma interface amigável e funcionalidades robustas. 
+A nossa empresa, dedicada a inovar no campo da interação digital, está em processo de criação de uma plataforma de enquetes interativas chamada `Votefy`. Esse projeto visa proporcionar uma experiência envolvente e dinâmica para os usuários, permitindo que eles participem e criem enquetes de maneira intuitiva e interativa. Com o objetivo de transformar a forma como as pessoas coletam e analisam opiniões, estamos desenvolvendo uma solução tecnológica avançada que ofereça uma interface amigável e funcionalidades robustas. 
 <br><br><br><br><br>
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Escopo" alt="Typing SVG" /></a>
 
-A plataforma de enquetes será desenvolvida utilizando Node.js para o backend e React e Next.js para o frontend, com MongoDB como banco de dados e JWT para autenticação. A solução visa proporcionar uma experiência de usuário intuitiva, com recursos para criação, visualização, atualização e exclusão de enquetes.
+A plataforma de enquetes será desenvolvida utilizando `Node.js` para o backend e `React e Next.js` para o frontend, com `MongoDB` como banco de dados e `JWT` para autenticação. A solução visa proporcionar uma experiência de usuário intuitiva, com recursos para criação, visualização, atualização e exclusão de enquetes.
 <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Objetivos SMART" alt="Typing SVG" /></a>
 
 - **Específicos:**
-  1. Criar uma API RESTful com Node.js que suporte operações CRUD (Criar, Ler, Atualizar, Deletar) para enquetes, até o final da segunda semana.
-  2. Implementar um sistema de autenticação de usuários utilizando JWT até o final da terceira semana.
-  3. Configurar e integrar o banco de dados MongoDB, permitindo o armazenamento seguro e eficiente das enquetes dos usuários, até o final da quarta semana.
-  4. Desenvolver a interface de usuário em React e Next, permitindo a criação e gerenciamento de enquetes, até o final da quinta semana.
+  1. Criar uma `API RESTful` com Node.js que suporte operações CRUD (Criar, Ler, Atualizar, Deletar) para enquetes, até o final da segunda semana.
+  2. Implementar um `sistema de autenticação` de usuários utilizando JWT até o final da terceira semana.
+  3. Configurar e integrar o banco de dados MongoDB, permitindo o `armazenamento seguro` e eficiente das enquetes dos usuários, até o final da quarta semana.
+  4. Desenvolver a interface de usuário em `React e Next`, permitindo a criação e gerenciamento de enquetes, até o final da quinta semana.
 
 - **Mensuráveis:**
   1. Alcançar uma base de 100 usuários registrados na plataforma dentro do primeiro mês após o lançamento.
