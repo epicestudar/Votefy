@@ -227,8 +227,6 @@ flowchart TD
 
 **• Kanit**
 
-**• Inter**
-
 **• Poppins**
 
 **• Roboto**
