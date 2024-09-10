@@ -87,14 +87,14 @@ gantt
 
 **Equipe:**
 - 1 Gerente de Projetos
-- 2 Desenvolvedores Full-Stack (Node.js e React)
-- 1 Designer UI/UX
+- 3 Desenvolvedores Full-Stack (Node.js, React e Next)
+- 2 Designer UI/UX
 - 1 Administrador de Banco de Dados
 - 1 Especialista em Segurança
 
 **Tecnologias:**
 - **Node.js** (Backend)
-- **React** (Frontend)
+- **React e Next** (Frontend)
 - **MongoDB** (Banco de Dados)
 - **JWT** (Autenticação)
 - **Git/GitHub** (Controle de Versão)
@@ -103,6 +103,7 @@ gantt
 - Trello para gerenciamento de tarefas
 - Slack para comunicação interna
 - Figma para design de interfaces
+- Mermaid para montagem dos diagramas
 
 <br><br><br><br><br>
 
