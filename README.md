@@ -180,31 +180,26 @@ flowchart TD
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Diagrama de Fluxo" alt="Typing SVG" /></a>
 ```mermaid
 flowchart TD
-    A[Início] --> B[Login/Registro]
-    B --> C{Usuário Existente?}
-    C -->|Sim| D[Dashboard]
-    C -->|Não| E[Cadastrar Novo Usuário]
-    E --> B
+    Start([Início]) --> |Acessa Plataforma| A[Fazer Login]
+    A -->|Login Sucesso| B[Dashboard de Enquetes]
+    A -->|Login Falhou| C[Exibir Erro de Login]
+    C -->|Tentar Novamente| A
+    
+    B -->|Criar Nova Enquete| D[Criar Enquete]
+    D -->|Inserir Título, Opções e Descrição| E[Confirmar Criação]
+    E -->|Sucesso| F[Exibir Enquete no Dashboard]
+    
+    B -->|Votar em Enquete| G[Selecionar Enquete]
+    G -->|Escolher Opção| H[Confirmar Voto]
+    H -->|Voto Registrado| I[Atualizar Resultados]
+    
+    B -->|Acompanhar Resultados| J[Visualizar Resultados em Tempo Real]
+    
+    B -->|Gerenciar Enquetes| K[Editar ou Excluir Enquete]
+    K -->|Confirmar Alterações| F
+    
+    End([Fim])
 
-    D --> F[Visualizar Tarefas]
-    D --> G[Criar Tarefa]
-    D --> H[Editar Tarefa]
-    D --> I[Excluir Tarefa]
-
-    F --> J{Tarefas Concluídas?}
-    J -->|Sim| K[Exibir Tarefas Concluídas]
-    J -->|Não| L[Exibir Tarefas Pendentes]
-
-    G --> M[Adicionar Detalhes da Tarefa]
-    M --> D
-
-    H --> N[Selecionar Tarefa para Editar]
-    N --> O[Alterar Detalhes da Tarefa]
-    O --> D
-
-    I --> P[Selecionar Tarefa para Excluir]
-    P --> Q[Confirmar Exclusão]
-    Q --> D
 ```
 <br><br><br><br><br>
 
