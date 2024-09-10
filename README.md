@@ -214,7 +214,7 @@ flowchart TD
 
 <p align="left">
 
-**- `Paleta` de Cores:**
+### Paleta de Cores:
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=1DA1F2&repeat=false&random=false&width=435&lines=1DA1F2)](https://git.io/typing-svg)
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=E1E8ED&repeat=false&random=false&width=435&lines=E1E8ED)](https://git.io/typing-svg)
@@ -223,7 +223,7 @@ flowchart TD
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FFFFFF&repeat=false&random=false&width=435&lines=FFFFFF)](https://git.io/typing-svg)
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=E0245E&repeat=false&random=false&width=435&lines=E0245E)](https://git.io/typing-svg)
 
-**- `Fontes` do Nosso Projeto:**
+### Fontes de Texto:
 
 **• Kanit**
 
