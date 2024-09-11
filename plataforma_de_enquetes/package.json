@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.1",
+    "next": "14.2.9",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.9"
+    "react-dom": "^18"
   }
 }
