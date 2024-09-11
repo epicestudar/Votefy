@@ -250,6 +250,23 @@ flowchart TD
    <img src="/src/protótipos/alta_fidelidade.png" alt="logo" width=850px>
 </p>
 <br><br><br><br><br>
+ <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Referências 📜" alt="Typing SVG" /></a>
+
+* ### Modelagem de Diagramas:
+    - [Mermaid](https://mermaid.live/edit#pako:eNpVjs1qw0AMhF9F6NRC_AI-FBq7zSXQQnPz5iBs2bvE-8NaSwi2373r-NLqJM18M2jG1neMJfajv7eaosClVg7yvDeVjmYSS9MViuJtObGA9Y4fCxxfTh4m7UMwbnjd-eMGQTWfN4xBtHG3dbeqZ_7L8QJ1c6YgPlz_Ope7X-CjMd861_93dOSc-mx6KnsqWopQUXwieEDL0ZLp8vvzpigUzZYVlnntuKc0ikLl1oxSEv_zcC2WEhMfMPo0aMyd45SvFDoSrg0NkeyOrL_WfFuF)
+
+* ### IA's Usadas:
+    - [ChatGPT 3.5](https://chat.openai.com/)
+    - [Bing - Image Creator](https://www.bing.com/images/create)
+ 
+* ### UX/UI:
+  - [Figma](https://www.figma.com/)
+  
+* ### Outros:
+  - [YouTube](https://www.youtube.com/)
+  - [Documentação](https://github.com/shyoutarou/README-Model/blob/master/README.md)
+  - [Badges](https://dev.to/)
+<br><br><br><br><br>
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Desenvolvedores do Projeto" alt="Typing SVG" /></a>
 
 <div align=center>
@@ -275,20 +292,3 @@ flowchart TD
 
   </table>
 </div>
-<br><br><br><br><br>
- <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Referências 📜" alt="Typing SVG" /></a>
-
-* ### Modelagem de Diagramas:
-    - [Mermaid](https://mermaid.live/edit#pako:eNpVjs1qw0AMhF9F6NRC_AI-FBq7zSXQQnPz5iBs2bvE-8NaSwi2373r-NLqJM18M2jG1neMJfajv7eaosClVg7yvDeVjmYSS9MViuJtObGA9Y4fCxxfTh4m7UMwbnjd-eMGQTWfN4xBtHG3dbeqZ_7L8QJ1c6YgPlz_Ope7X-CjMd861_93dOSc-mx6KnsqWopQUXwieEDL0ZLp8vvzpigUzZYVlnntuKc0ikLl1oxSEv_zcC2WEhMfMPo0aMyd45SvFDoSrg0NkeyOrL_WfFuF)
-
-* ### IA's Usadas:
-    - [ChatGPT 3.5](https://chat.openai.com/)
-    - [Bing - Image Creator](https://www.bing.com/images/create)
- 
-* ### UX/UI:
-  - [Figma](https://www.figma.com/)
-  
-* ### Outros:
-  - [YouTube](https://www.youtube.com/)
-  - [Documentação](https://github.com/shyoutarou/README-Model/blob/master/README.md)
-  - [Badges](https://dev.to/)
