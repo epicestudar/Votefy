@@ -135,7 +135,7 @@ classDiagram
         +string título
         +string[] opções
         +string descrição
-        +string categoria
+        +enum categoria
         +string imagem
         +date dataDeCriação
         +int usuarioId
@@ -149,7 +149,7 @@ classDiagram
         +int id
         +int enqueteId
         +int usuarioId
-        +string opção_votada
+        +string opçãoVotada
         +date dataQueVotou
         +get()
         +post()
