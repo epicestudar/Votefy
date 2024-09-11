@@ -226,11 +226,11 @@ flowchart TD
 
 ### Fontes de Texto:
 
-**• Kanit**
-
 **• Poppins**
 
 **• Roboto**
+
+**• Kanit**
 </p>
 <br><br><br><br><br>
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Protótipos" alt="Typing SVG" /></a>
