@@ -147,8 +147,8 @@ classDiagram
 
     class Votacao {
         +int id
-        +int enquete_id
-        +int usuario_id
+        +int enqueteId
+        +int usuarioId
         +string opções[i]
         +get()
         +post()
