@@ -242,10 +242,10 @@ flowchart TD
 
 ### Média Fidelidade:
 <p align="center">
-   <img src="/src/protótipos/media_fidelidade.JPG" alt="logo" width=450px>
+   <img src="/src/protótipos/media_fidelidade.png" alt="logo" width=850px>
 </p>
 
 ### Alta Fidelidade:
 <p align="center">
-   <img src="/src/protótipos/alta_fidelidade.JPG" alt="logo" width=850px>
+   <img src="/src/protótipos/alta_fidelidade.png" alt="logo" width=850px>
 </p>
