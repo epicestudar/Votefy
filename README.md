@@ -124,7 +124,7 @@ classDiagram
         +string email
         +string senha
         +string cidade
-        +string imagem
+        +string fotoDePerfil
         +post()
         +put()
         +delete()
@@ -136,7 +136,9 @@ classDiagram
         +string[] opções
         +string descrição
         +string categoria
-        +int usuario_id
+        +string imagem
+        +date dataDeCriação
+        +int usuarioId
         +get()
         +post()
         +put()
@@ -145,9 +147,10 @@ classDiagram
 
     class Votacao {
         +int id
-        +int enquete_id
-        +int usuario_id
-        +string opções[i]
+        +int enqueteId
+        +int usuarioId
+        +string opção_votada
+        +date dataQueVotou
         +get()
         +post()
         +put()
