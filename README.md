@@ -124,7 +124,7 @@ classDiagram
         +string email
         +string senha
         +string cidade
-        +string imagem
+        +string fotoDePerfil
         +post()
         +put()
         +delete()
@@ -136,6 +136,7 @@ classDiagram
         +string[] opções
         +string descrição
         +string categoria
+        +string imagem
         +int usuario_id
         +get()
         +post()
