@@ -124,6 +124,7 @@ classDiagram
         +string email
         +string senha
         +string cidade
+        +string imagem
         +post()
         +put()
         +delete()
