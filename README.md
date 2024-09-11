@@ -137,6 +137,7 @@ classDiagram
         +string descrição
         +string categoria
         +string imagem
+        +string dataDeCriação
         +int usuario_id
         +get()
         +post()
