@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const EnqueteSchema = new MongooseError.Schema({
+const EnqueteSchema = new mongoose.Schema({
   titulo: {
     type: String,
     required: true,
@@ -34,8 +34,8 @@ const EnqueteSchema = new MongooseError.Schema({
   },
   opcoes: [
     {
-      type: String,
-      required: true,
+      texto: { type: String, required: true },
+      votos: { type: Number, default: 0 },
     },
   ],
   usuarioId: {
@@ -45,8 +45,8 @@ const EnqueteSchema = new MongooseError.Schema({
   },
   dataDeCriacao: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 const Enquete = mongoose.models.Enquete || mongoose.model("Enquete", EnqueteSchema);
