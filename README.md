@@ -252,7 +252,7 @@ flowchart TD
 
 ### Baixa Fidelidade:
 <p align="center">
-   <img src="/src/protótipos/baixa_fidelidade.jpeg" alt="logo" width=850px>
+   <img src="/src/protótipos/baixa_fidelidade.jpg" alt="logo" width=850px>
 </p>
 
 ### Média Fidelidade:
