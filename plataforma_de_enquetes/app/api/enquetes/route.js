@@ -4,7 +4,7 @@ import {
   addEnquete,
   updateEnquete,
   deleteEnquete,
-} from "@/controllers/TodoController";
+} from "@/controllers/EnqueteController";
 
 // Handler para GET
 export async function GET(req) {
