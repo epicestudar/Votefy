@@ -11,7 +11,6 @@ export default function EnquetePage() {
     "Nenhuma Categoria Selecionada"
   );
 
-  // Fetch enquetes ao carregar a página
   useEffect(() => {
     const fetchEnquetes = async () => {
       const token = localStorage.getItem("token");
@@ -26,20 +25,29 @@ export default function EnquetePage() {
         },
       });
 
+      const data = await response.json();
+      console.log("Resposta da API ao recuperar enquetes:", data);
+
       if (response.ok) {
-        const data = await response.json();
-        setEnquetes(data.enquetes || []); // Garante que `enquetes` seja um array
+        setEnquetes(data || []); // Garante que `enquetes` seja um array
       } else {
         // Trate o erro adequadamente
+        console.error("Erro ao recuperar enquetes:", data);
       }
     };
 
     fetchEnquetes();
   }, []);
 
-  // Adiciona uma nova enquete
+
   const addEnquete = async () => {
     const token = localStorage.getItem("token");
+    console.log("Dados da enquete a serem enviados:", {
+      titulo: novoTitulo,
+      descricao: novaDescricao,
+      categoria: novaCategoria,
+    });
+
     const response = await fetch("/api/enquetes", {
       method: "POST",
       headers: {
@@ -54,11 +62,20 @@ export default function EnquetePage() {
     });
 
     const data = await response.json();
-    setEnquetes([...enquetes, data.enquete]);
+    console.log("Resposta da API ao adicionar enquete:", data);
+
+    if (response.ok) {
+      setEnquetes([...enquetes, data]); // Atualize com o objeto retornado
+    } else {
+      // Trate o erro adequadamente
+      console.error("Erro ao adicionar enquete:", data);
+    }
     setNovoTitulo("");
     setNovaDescricao("");
     setNovaCategoria("Nenhuma Categoria Selecionada"); // Reseta a categoria
   };
+
+
 
   return (
     <div>
