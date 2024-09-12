@@ -43,12 +43,19 @@ A plataforma de enquetes será desenvolvida utilizando `Node.js` para o backend 
   2. Implementar um `sistema de autenticação` de usuários utilizando JWT até o final da terceira semana.
   3. Configurar e integrar o banco de dados MongoDB, permitindo o `armazenamento seguro` e eficiente das enquetes dos usuários, até o final da quarta semana.
   4. Desenvolver a interface de usuário em `React e Next`, permitindo a criação e gerenciamento de enquetes, até o final da quinta semana.
+  5. Integrar um sistema de `notificações em tempo real` para alertar os usuários sobre atualizações ou novos votos em suas enquetes, até o final da sexta semana.
+  6. Implementar testes automatizados de integração para garantir a `consistência das operações CRUD`, até o final da sétima semana.
 
 - **Mensuráveis:**
   1. Alcançar uma base de 100 usuários registrados na plataforma dentro do primeiro mês após o lançamento.
   2. Garantir que 90% das operações CRUD sejam concluídas com sucesso e sem erros no primeiro mês de operação.
   3. Obter uma avaliação de satisfação do usuário de pelo menos 4,5 em uma escala de 1 a 5 após o segundo mês de uso da plataforma.
   4. Assegurar que a aplicação suporte pelo menos 500 acessos simultâneos sem degradação de performance.
+ 
+- **Relevantes:**
+  1. Garantir que a plataforma seja escalável e segura para suportar o crescimento constante, garantindo que a `infraestrutura cloud` possa ser ajustada conforme necessário.
+  2. Desenvolver uma experiência de usuário fluida e intuitiva, garantindo que a interface de criação de enquetes seja fácil de usar tanto em dispositivos móveis quanto em desktops.
+  3. Introduzir um sistema de feedback constante, permitindo que os usuários sugiram melhorias e relatem problemas diretamente da interface da plataforma.    
  <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Cronograma" alt="Typing SVG" /></a>
@@ -89,9 +96,9 @@ gantt
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Análises de Risco" alt="Typing SVG" /></a>
 
-1. **Atrasos no Desenvolvimento:** O tempo limitado pode levar a atrasos na entrega das funcionalidades, impactando o cronograma geral do projeto.
-2. **Desafios de Integração:** A integração entre o backend e frontend pode apresentar dificuldades, especialmente na implementação do sistema de autenticação.
-3. **Segurança dos Dados:** Existe o risco de vulnerabilidades relacionadas à autenticação e proteção de dados, o que requer medidas de segurança rigorosas.
+1. **Atrasos no Desenvolvimento: Riscos de Complexidade e Mudança de Requisitos:** O desenvolvimento de uma plataforma de enquetes interativas envolve várias funcionalidades interdependentes, como o sistema de login/cadastro, criação de enquetes, e funcionalidades de votação. O mal gerenciamento do tempo e a subestimação da complexidade técnica podem resultar em atrasos significativos, especialmente se surgirem mudanças nos requisitos ou dificuldades técnicas inesperadas, como a necessidade de ajustes em bibliotecas externas ou problemas de desempenho em consultas ao banco de dados.
+2. **Desafios de Integração: Riscos de Inconsistência e Sincronização Entre Frontend e Backend:** A integração entre o frontend (React/Next.js) e o backend (Node.js) pode enfrentar desafios significativos, especialmente em relação ao fluxo de autenticação e à manipulação das enquetes e votos. A comunicação entre o frontend e as APIs precisa ser sincronizada de maneira eficiente, especialmente na gestão de sessões, autenticação JWT e atualização de dados em tempo real, para garantir uma experiência de usuário fluida.
+3. **Segurança dos Dados: Vulnerabilidades em Autenticação, Proteção de Votos e Privacidade de Usuários:** A segurança dos dados é uma preocupação central em plataformas interativas. Com a funcionalidade de login/cadastro, é fundamental garantir que as senhas dos usuários sejam armazenadas com segurança, que a autenticação seja robusta (ex: usando JWT) e que as enquetes e votos sejam protegidos contra manipulação externa (como múltiplos votos fraudulentos ou ataques de injeção). Além disso, dados pessoais dos usuários, como e-mails, devem ser protegidos contra vazamentos.
 
 <br><br><br><br><br>
 
