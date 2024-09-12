@@ -17,6 +17,8 @@ export const jwtMiddleware = (handler) => async (req) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded; // Adiciona a propriedade `user` ao `req`
+
+    // Passa `req.user` para o handler
     return handler(req);
   } catch (error) {
     return new Response(JSON.stringify({ message: "Token inválido" }), {

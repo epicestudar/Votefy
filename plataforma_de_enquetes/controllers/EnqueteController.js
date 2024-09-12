@@ -1,10 +1,27 @@
 import Enquete from "@/models/Enquete";
-import User from "@/models/User";
+import connectMongo from "@/utils/dbConnect";
+
+// Função para obter todas as enquetes
+export const getEnquete = async (req) => {
+  await connectMongo();
+  try {
+    const enquetes = await Enquete.find({ usuarioId: req.user.userId }); // Altere 'userId' para 'usuarioId'
+    return new Response(JSON.stringify({ enquetes }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: "Erro ao buscar enquetes" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+};
 
 export const addEnquete = async (req) => {
   try {
     const { titulo, descricao, categoria, imagem, opcoes } = await req.json();
-    const { userId } = req;
+    const userId = req.user?.userId; // Garantir que userId está acessível
 
     console.log("Dados recebidos para criação de enquete:", {
       titulo,
@@ -12,17 +29,26 @@ export const addEnquete = async (req) => {
       categoria,
       imagem,
       opcoes,
+      userId,
     });
 
-    // Verificar se o usuário existe
-    const user = await User.findById(userId);
-    if (!user) {
-      console.log("Usuário não encontrado:", userId);
-      return new Response(
-        JSON.stringify({ message: "Usuário não encontrado" }),
-        { status: 404 }
+    if (!userId) {
+      throw new Error(
+        "Usuário não autenticado ou ID de usuário não encontrado"
       );
     }
+
+    await connectMongo();
+
+    // Verificar e formatar `opcoes` para garantir que seja um array de objetos com `texto` e `votos`
+    const formattedOpcoes = Array.isArray(opcoes)
+      ? opcoes.map((opcao) => ({
+          texto: opcao.texto || "",
+          votos: opcao.votos || 0,
+        }))
+      : [];
+
+    console.log("Opções formatadas:", formattedOpcoes);
 
     // Criar a nova enquete
     const novaEnquete = new Enquete({
@@ -30,16 +56,20 @@ export const addEnquete = async (req) => {
       descricao,
       categoria,
       imagem,
-      opcoes,
-      usuarioId: userId,
+      opcoes: formattedOpcoes,
+      usuarioId: userId, // Definindo usuário ID
     });
 
-    const savedEnquete = await novaEnquete.save();
-    console.log("Enquete criada com sucesso:", savedEnquete);
+    const resultado = await novaEnquete.save();
 
-    return new Response(JSON.stringify(savedEnquete), { status: 201 });
+    console.log("Enquete criada com sucesso:", resultado);
+
+    return new Response(JSON.stringify({ enquete: resultado }), {
+      status: 201,
+    });
   } catch (error) {
-    console.error("Erro ao criar enquete:", error.message);
+    console.error("Erro ao criar enquete:", error);
+
     return new Response(
       JSON.stringify({
         message: "Erro ao criar enquete",
@@ -52,73 +82,77 @@ export const addEnquete = async (req) => {
 
 
 
-// Recuperar todas as enquetes
-export const getEnquete = async (req) => {
+
+
+// Função para atualizar uma enquete
+export const updateEnquete = async (req) => {
+  const { id } = req.query; // Certifique-se de que `req.query` é o método correto para obter o ID
+  const data = await req.json();
+  await connectMongo();
+
   try {
-    const enquetes = await Enquete.find().populate("usuarioId", "nome email");
-    console.log("Enquetes recuperadas:", enquetes);
-    return new Response(JSON.stringify(enquetes), { status: 200 });
+    const updatedEnquete = await Enquete.findOneAndUpdate(
+      { _id: id, usuarioId: req.user.userId }, // Altere 'userId' para 'usuarioId'
+      data,
+      { new: true }
+    );
+    if (!updatedEnquete) {
+      return new Response(
+        JSON.stringify({ message: "Enquete não encontrada" }),
+        {
+          status: 404,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+    return new Response(JSON.stringify({ enquete: updatedEnquete }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    console.error("Erro ao recuperar enquetes:", error.message);
     return new Response(
-      JSON.stringify({
-        message: "Erro ao recuperar enquetes",
-        error: error.message,
-      }),
-      { status: 500 }
+      JSON.stringify({ message: "Erro ao atualizar a enquete" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
     );
   }
 };
 
+// Função para deletar uma enquete
+export const deleteEnquete = async (req) => {
+  const { id } = req.query; // Certifique-se de que `req.query` é o método correto para obter o ID
+  await connectMongo();
 
-// Atualizar uma enquete existente
-export const updateEnquete = async (req) => {
   try {
-    const { id, titulo, descricao, categoria, imagem, opcoes } = await req.json();
-    const { userId } = req;
-
-    // Verificar se a enquete existe
-    const enquete = await Enquete.findById(id);
-    if (!enquete) {
-      return new Response(JSON.stringify({ message: "Enquete não encontrada" }), { status: 404 });
+    const deletedEnquete = await Enquete.findOneAndDelete({
+      _id: id,
+      usuarioId: req.user.userId, // Altere 'userId' para 'usuarioId'
+    });
+    if (!deletedEnquete) {
+      return new Response(
+        JSON.stringify({ message: "Enquete não encontrada" }),
+        {
+          status: 404,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     }
-
-    // Verificar se o usuário que está tentando atualizar é o criador
-    if (enquete.usuarioId.toString() !== userId) {
-      return new Response(JSON.stringify({ message: "Usuário não autorizado" }), { status: 403 });
-    }
-
-    // Atualizar os campos da enquete
-    enquete.titulo = titulo || enquete.titulo;
-    enquete.descricao = descricao || enquete.descricao;
-    enquete.categoria = categoria || enquete.categoria;
-    enquete.imagem = imagem || enquete.imagem;
-    enquete.opcoes = opcoes || enquete.opcoes;
-
-    await enquete.save();
-    return new Response(JSON.stringify(enquete), { status: 200 });
+    return new Response(
+      JSON.stringify({ message: "Enquete deletada com sucesso" }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
-    return new Response(JSON.stringify({ message: "Erro ao atualizar enquete", error: error.message }), { status: 500 });
+    return new Response(
+      JSON.stringify({ message: "Erro ao deletar enquete" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 };
-
-// Deletar uma enquete existente
-export const deleteEnquete = async (req) => {
-  try {
-    const { id } = await req.json();
-    const { userId } = req;
-
-    const enquete = await Enquete.findById(id);
-    if (!enquete) {
-      return new Response(JSON.stringify({ message: "Enquete não encontrada" }), { status: 404 });
-    }
-
-    // Verificar se o usuário que está tentando deletar é o criador
-    if (enquete.usuarioId.toString() !== userId) {
-      return new Response(JSON.stringify({ message: "Usuário não autorizado" }), { status: 403 });
-    }
-
-    await Enquete.findByIdAndDelete(id);
-    return new Response(JSON.stringify({ message: "Enquete deletada com sucesso" }), { status: 200 });
-  } catch (error) 
- { return new Response(JSON.stringify({ message: "Erro ao deletar enquete", error: error.message }), { status: 500 }); } };
