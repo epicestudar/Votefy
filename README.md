@@ -277,7 +277,7 @@ flowchart TD
     <tbody>
       <tr align=center>
         <th><strong> Vinícius G. Feitoza </br> epicestudar </strong></th>
-        <th><strong> João Victor Lima </br> JoaovlLima </strong></th>
+        <th><strong> João Victor de Lima </br> JoaovlLima </strong></th>
       </tr>
       <tr align=center>
         <td>
