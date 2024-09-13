@@ -1,10 +1,12 @@
 import React from "react";
 import Footer from "../app/components/Footer";
+import Header from "./components/Header";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <div>
+      <Header />
       <main className="container">
         <h1>Bem-vindo à Plataforma Interativa de Enquetes!</h1>
         <p>
@@ -19,7 +21,6 @@ export default function Home() {
           assuntos de seu interesse. Crie sua conta e faça parte da nossa
           comunidade!
         </p>
-
       </main>
       <Footer />
     </div>

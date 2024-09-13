@@ -1,3 +1,5 @@
+"use client"; // Adiciona a diretiva "use client" para indicar que este é um componente de cliente
+
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./header.module.css"; // Importando os estilos
