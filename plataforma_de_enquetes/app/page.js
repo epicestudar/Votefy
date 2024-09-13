@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "../app/components/Header";
 import Footer from "../app/components/Footer";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <div>
-      <Header />
       <main className="container">
         <h1>Bem-vindo à Plataforma Interativa de Enquetes!</h1>
         <p>

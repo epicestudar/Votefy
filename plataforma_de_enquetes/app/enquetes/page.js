@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 import styles from "../styles/enquetes.module.css";
 
 export default function EnquetePage() {
@@ -13,7 +13,7 @@ export default function EnquetePage() {
     "Nenhuma Categoria Selecionada"
   );
   const [novaImagem, setNovaImagem] = useState(""); // Adicionado para imagem
-  const [novasOpcoes, setNovasOpcoes] = useState([]); // Adicionado para opções
+  const [novasOpcoes, setNovasOpcoes] = useState([{ texto: "", votos: 0 }]); // Estado das opções dinâmicas
   const router = useRouter();
 
   useEffect(() => {
@@ -41,6 +41,22 @@ export default function EnquetePage() {
     fetchEnquetes();
   }, [router]);
 
+  // Funções de manipulação das opções dinâmicas
+  const adicionarOpcao = () => {
+    setNovasOpcoes([...novasOpcoes, { texto: "", votos: 0 }]);
+  };
+
+  const atualizarOpcao = (index, valor) => {
+    const novas = [...novasOpcoes];
+    novas[index].texto = valor;
+    setNovasOpcoes(novas);
+  };
+
+  const removerOpcao = (index) => {
+    const novas = novasOpcoes.filter((_, i) => i !== index);
+    setNovasOpcoes(novas);
+  };
+
   const addEnquete = async () => {
     const token = localStorage.getItem("token");
 
@@ -49,10 +65,7 @@ export default function EnquetePage() {
       descricao: novaDescricao,
       categoria: novaCategoria,
       imagem: novaImagem, // Certifique-se de definir isso no estado se necessário
-      opcoes: [
-        { texto: "Opção 1", votos: 0 },
-        { texto: "Opção 2", votos: 0 },
-      ], // Exemplo, ajuste conforme necessário
+      opcoes: novasOpcoes.filter((opcao) => opcao.texto.trim() !== ""), // Garante que as opções não estejam vazias
     };
 
     console.log("Dados enviados para criar a enquete:", novaEnquete);
@@ -68,20 +81,17 @@ export default function EnquetePage() {
 
     const data = await response.json();
 
-    console.log("Resposta da criação da enquete:", data);
-
     if (response.ok) {
       setEnquetes([...enquetes, data.enquete]);
       setNovoTitulo("");
       setNovaDescricao("");
       setNovaCategoria("Nenhuma Categoria Selecionada");
       setNovaImagem(""); // Reseta a imagem se necessário
+      setNovasOpcoes([{ texto: "", votos: 0 }]); // Reseta as opções
     } else {
       console.error("Erro ao adicionar enquete:", data.message);
     }
   };
-
-
 
   const deleteEnquete = async (id) => {
     const token = localStorage.getItem("token");
@@ -97,12 +107,13 @@ export default function EnquetePage() {
     setEnquetes(enquetes.filter((enquete) => enquete._id !== id));
   };
 
-
   return (
     <div>
-      <Header />
+      
       <div className={styles.container}>
         <h1 className={styles["enquetes-title"]}>Enquetes</h1>
+
+        {/* Formulário de criação de enquetes */}
         <input
           type="text"
           value={novoTitulo}
@@ -138,6 +149,7 @@ export default function EnquetePage() {
           <option value="Finanças e Economia">Finanças e Economia</option>
           <option value="Curiosidades">Curiosidades</option>
         </select>
+
         <input
           type="text"
           value={novaImagem}
@@ -145,16 +157,42 @@ export default function EnquetePage() {
           placeholder="URL da imagem"
           className={styles["input-field"]}
         />
-        <textarea
-          value={novasOpcoes}
-          onChange={(e) => setNovasOpcoes(e.target.value.split("\n"))}
-          placeholder="Opções (uma por linha)"
-          className={styles["textarea-field"]}
-        />
+
+        {/* Renderizar opções dinâmicas */}
+        {novasOpcoes.map((opcao, index) => (
+          <div key={index} className={styles["option-item"]}>
+            <input
+              type="text"
+              value={opcao.texto}
+              onChange={(e) => atualizarOpcao(index, e.target.value)}
+              placeholder={`Opção ${index + 1}`}
+              className={styles["input-field"]}
+            />
+            <button
+              type="button"
+              onClick={() => removerOpcao(index)}
+              className={styles["remove-button"]}
+            >
+              Remover
+            </button>
+          </div>
+        ))}
+
+        {/* Botão para adicionar novas opções */}
+        <button
+          type="button"
+          onClick={adicionarOpcao}
+          className={styles["add-button"]}
+        >
+          Adicionar Opção
+        </button>
+
+        {/* Botão para enviar a enquete */}
         <button onClick={addEnquete} className={styles["add-button"]}>
           Adicionar Enquete
         </button>
 
+        {/* Listagem de enquetes */}
         <ul className={styles["enquete-list"]}>
           {enquetes.map((enquete) => (
             <li key={enquete._id} className={styles["enquete-item"]}>
