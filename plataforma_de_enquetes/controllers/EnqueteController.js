@@ -122,14 +122,20 @@ export const updateEnquete = async (req) => {
 
 // Função para deletar uma enquete
 export const deleteEnquete = async (req) => {
-  const { id } = req.query; // Certifique-se de que `req.query` é o método correto para obter o ID
+  const url = new URL(req.url);
+  const id = url.searchParams.get("id");
+
+  console.log("ID da enquete a ser deletada:", id);
+  console.log("Usuário autenticado:", req.user); // Verifica se o usuário está correto
+
   await connectMongo();
 
   try {
     const deletedEnquete = await Enquete.findOneAndDelete({
       _id: id,
-      usuarioId: req.user.userId, // Altere 'userId' para 'usuarioId'
+      usuarioId: req.user.userId,
     });
+
     if (!deletedEnquete) {
       return new Response(
         JSON.stringify({ message: "Enquete não encontrada" }),
@@ -139,6 +145,7 @@ export const deleteEnquete = async (req) => {
         }
       );
     }
+
     return new Response(
       JSON.stringify({ message: "Enquete deletada com sucesso" }),
       {
@@ -147,6 +154,7 @@ export const deleteEnquete = async (req) => {
       }
     );
   } catch (error) {
+    console.error("Erro ao deletar enquete:", error);
     return new Response(
       JSON.stringify({ message: "Erro ao deletar enquete" }),
       {

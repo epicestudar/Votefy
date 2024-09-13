@@ -85,6 +85,8 @@ export default function EnquetePage() {
 
   const deleteEnquete = async (id) => {
     const token = localStorage.getItem("token");
+    console.log("Tentando excluir enquete com ID:", id); // Loga o ID da enquete
+
     await fetch(`/api/enquetes?id=${id}`, {
       method: "DELETE",
       headers: {
@@ -94,6 +96,7 @@ export default function EnquetePage() {
 
     setEnquetes(enquetes.filter((enquete) => enquete._id !== id));
   };
+
 
   return (
     <div>
