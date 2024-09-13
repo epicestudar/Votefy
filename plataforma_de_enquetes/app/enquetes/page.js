@@ -107,9 +107,13 @@ export default function EnquetePage() {
     setEnquetes(enquetes.filter((enquete) => enquete._id !== id));
   };
 
+  const handleEdit = (id) => {
+    router.push(`/edit/${id}`);
+ // Redireciona para a página de edição
+  };
+
   return (
     <div>
-      
       <div className={styles.container}>
         <h1 className={styles["enquetes-title"]}>Enquetes</h1>
 
@@ -214,6 +218,7 @@ export default function EnquetePage() {
                   </li>
                 ))}
               </ul>
+              <button onClick={() => handleEdit(enquete._id)}>Editar</button>
               <button
                 onClick={() => deleteEnquete(enquete._id)}
                 className={styles["delete-button"]}
