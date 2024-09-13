@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link"; // Importa o componente Link para navegação
 import styles from "./header.module.css"; // Importando os estilos
 
 export default function Header() {
@@ -22,23 +23,48 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        {/* Coloque sua imagem de logo aqui */}
-        <img src="/img/logo/logo.png" alt="Logo" />
+        {/* Link para a página inicial */}
+        <Link href="/" passHref>
+          <img src="/img/logo/logo.png" alt="Logo" />
+        </Link>
       </div>
       <div className={styles.fields}>
-        <a href="/criar-enquete" title="Criar Enquete" className={styles.link}>
-          Criar Enquete
-        </a>
-        <a href="/suas_enquetes" title="Suas Enquetes" className={styles.link}>
-          Suas Enquetes
-        </a>
-        <a href="/historico" title="historico" className={styles.link}>
-          Histórico
-        </a>
+        {isLoggedIn ? (
+          <>
+            <a
+              href="/criar-enquete"
+              title="Criar Enquete"
+              className={styles.link}
+            >
+              Criar Enquete
+            </a>
+            <a
+              href="/suas_enquetes"
+              title="Suas Enquetes"
+              className={styles.link}
+            >
+              Suas Enquetes
+            </a>
+            <a href="/historico" title="Histórico" className={styles.link}>
+              Histórico
+            </a>
+          </>
+        ) : (
+          <>
+            <a href="/login" title="Login" className={styles.link}>
+              Login
+            </a>
+            <a href="/register" title="Registro" className={styles.link}>
+              Registro
+            </a>
+          </>
+        )}
       </div>
       {isLoggedIn && (
         <div className={styles.logout}>
-          <button onClick={handleLogout}>Sair</button>
+          <button onClick={handleLogout} className={styles.logoutBtn}>
+            Sair
+          </button>
         </div>
       )}
     </header>

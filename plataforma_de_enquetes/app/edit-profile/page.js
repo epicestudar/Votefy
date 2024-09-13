@@ -2,7 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "../styles/editProfile.module.css"; // Importando os estilos
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import "bootstrap/dist/css/bootstrap.min.css"; // Importa o CSS do Bootstrap
 
 export default function EditProfilePage() {
   const [userData, setUserData] = useState({
@@ -56,57 +58,69 @@ export default function EditProfilePage() {
   };
 
   return (
-    <div className={styles.container}>
-      <h1>Editar Perfil</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.inputLabel}>
-          <label htmlFor="nome">Nome:</label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            value={userData.nome}
-            onChange={handleChange}
-            className={styles.inputField}
-          />
-        </div>
-        <div className={styles.inputLabel}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-            className={styles.inputField}
-          />
-        </div>
-        <div className={styles.inputLabel}>
-          <label htmlFor="cidade">Cidade:</label>
-          <input
-            type="text"
-            id="cidade"
-            name="cidade"
-            value={userData.cidade}
-            onChange={handleChange}
-            className={styles.inputField}
-          />
-        </div>
-        <div className={styles.inputLabel}>
-          <label htmlFor="fotoDePerfil">Foto de Perfil URL:</label>
-          <input
-            type="text"
-            id="fotoDePerfil"
-            name="fotoDePerfil"
-            value={userData.fotoDePerfil}
-            onChange={handleChange}
-            className={styles.inputField}
-          />
-        </div>
-        <button type="submit" className={styles.submitButton}>
-          Salvar
-        </button>
-      </form>
+    <div>
+      <Header />
+      <div className="container mt-5">
+        <h1 className="mb-4">Editar Perfil</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="nome" className="form-label">
+              Nome:
+            </label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              value={userData.nome}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email:
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={userData.email}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="cidade" className="form-label">
+              Cidade:
+            </label>
+            <input
+              type="text"
+              id="cidade"
+              name="cidade"
+              value={userData.cidade}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="fotoDePerfil" className="form-label">
+              Foto de Perfil URL:
+            </label>
+            <input
+              type="text"
+              id="fotoDePerfil"
+              name="fotoDePerfil"
+              value={userData.fotoDePerfil}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Salvar
+          </button>
+        </form>
+      </div>
+      <Footer />
     </div>
   );
 }

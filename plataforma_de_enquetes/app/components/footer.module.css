@@ -32,6 +32,8 @@
     color: black;
     border-radius: 50%;
     transition: all 0.4s;
+    font-size: 1.8rem;
+    /* Define o tamanho dos ícones */
 }
 
 #instagram {
@@ -48,14 +50,12 @@
 
 .footerLink {
     text-decoration: none;
+    color: inherit;
+    /* Garante que a cor dos ícones herde a cor do pai */
 }
 
 .footerSocialMedia .footerLink:hover {
     opacity: 0.8;
-}
-
-.footerSocialMedia .footerLink i {
-    font-size: 1.2rem;
 }
 
 .footerList {
@@ -87,23 +87,30 @@
 .inputGroup {
     display: flex;
     align-items: center;
-    background-color: 4px;
+    background-color: #F4F4F4;
+    /* Ajustado para uma cor de fundo mais visível */
     border-radius: 4px;
 }
 
 .inputGroup input {
     padding: 0.75rem;
     width: 100%;
+    border: 1px solid #ccc;
+    /* Adicionado para um contorno visível */
+    border-radius: 4px 0 0 4px;
+    /* Ajuste para o contorno do botão */
 }
 
 .inputGroup button {
     background-color: #7f37c9;
     border: none;
-    color: black;
-    padding: 0px 1.25rem;
+    color: white;
+    /* Ajustado para melhorar a legibilidade */
+    padding: 0 1.25rem;
     font-size: 1.125rem;
     height: 100%;
-    border-radius: 0px 4px 4px 0px;
+    border-radius: 0 4px 4px 0;
+    /* Ajuste para combinar com o input */
     cursor: pointer;
     transition: all 0.4s;
 }

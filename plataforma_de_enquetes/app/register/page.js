@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../styles/forms.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Register() {
   const [nome, setNome] = useState("");
@@ -29,42 +31,46 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <input
-        type="text"
-        placeholder="Nome"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
-        required
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Senha"
-        value={senha}
-        onChange={(e) => setSenha(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Cidade"
-        value={cidade}
-        onChange={(e) => setCidade(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Foto de Perfil (URL)"
-        value={fotoDePerfil}
-        onChange={(e) => setFotoDePerfil(e.target.value)}
-      />
-      <button type="submit">Registrar</button>
-    </form>
+    <div>
+      <Header />
+      <form onSubmit={handleRegister}>
+        <input
+          type="text"
+          placeholder="Nome"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Cidade"
+          value={cidade}
+          onChange={(e) => setCidade(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Foto de Perfil (URL)"
+          value={fotoDePerfil}
+          onChange={(e) => setFotoDePerfil(e.target.value)}
+        />
+        <button type="submit">Registrar</button>
+      </form>
+      <Footer />
+    </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import styles from "../styles/enquetes.module.css";
 
 export default function EnquetePage() {
@@ -251,6 +252,7 @@ export default function EnquetePage() {
           </ul>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

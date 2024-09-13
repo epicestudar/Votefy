@@ -11,27 +11,25 @@ const Footer = () => {
           <h2>Votefy</h2>
           <p>Onde sua opinião faz a diferença!</p>
 
-          <div id="footer_social_media" className={styles.footerSocialMedia}>
+          <div className={styles.footerSocialMedia}>
             <a
               href="https://www.instagram.com"
-              className={styles.footerLink}
-              id="instagram"
+              className={`${styles.footerLink} ${styles.instagram}`}
+              title="Instagram"
             >
               <i className="fa-brands fa-instagram"></i>
             </a>
-
             <a
               href="https://twitter.com"
-              className={styles.footerLink}
-              id="twitter"
+              className={`${styles.footerLink} ${styles.twitter}`}
+              title="Twitter"
             >
               <i className="fa-brands fa-twitter"></i>
             </a>
-
             <a
               href="https://facebook.com"
-              className={styles.footerLink}
-              id="facebook"
+              className={`${styles.footerLink} ${styles.facebook}`}
+              title="Facebook"
             >
               <i className="fa-brands fa-facebook"></i>
             </a>
@@ -100,7 +98,7 @@ const Footer = () => {
       </div>
 
       <div id="footer_copyright" className={styles.footerCopyright}>
-        GameZone &#169; 2023 all rights reserved
+        Votefy &#169; 2024 all rights reserved
       </div>
     </footer>
   );
