@@ -1,109 +1,205 @@
-/* Estilos para enquetes.module.css */
-
+/* Estilos da página principal */
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    color: black;
 }
 
-.enquetes-title {
-    color: #2c3e50;
-    font-size: 2.5rem;
+
+
+
+/* Estilos para a sidebar à esquerda */
+.sidebar {
+    width: 30%;
+    background-color: #F8FCFD;
+    padding: 50px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* Ajuste para empilhar perfil e histórico */
+    height: 900px;
+    border-style: solid;
+    border-color: green;
+}
+
+/* Contêiner para a imagem e informações */
+.profileInfo {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilos para a imagem de perfil */
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    /* Espaçamento entre a imagem e as informações */
+}
+
+/* Estilos para as informações do perfil */
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.info h2 {
+    font-size: 17px;
+}
+
+.info p {
+    font-size: 16px;
+}
+
+/* Estilos para o histórico do usuário */
+.history {
+    margin-top: 20px;
+}
+
+.history h3 {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.historySections {
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
     margin-bottom: 20px;
 }
 
-.input-field,
-.select-field,
-.textarea-field {
-    width: 300px;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+.section h4 {
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
-.textarea-field {
-    height: 100px;
-}
-
-.add-button {
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.add-button:hover {
-    background-color: #2980b9;
-}
-
-.enquete-list {
+.section ul {
     list-style-type: none;
     padding: 0;
-    margin-top: 20px;
-    width: 100%;
 }
 
-.enquete-item {
-    background-color: #ecf0f1;
-    margin-bottom: 20px;
+.listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 15px;
+    background-color: #EEFFF9;
+    border-radius: 4px;
+    color: #1DA1F2;
+    border-style: solid;
+    border-color: #1DA1F2;
+
+}
+
+
+.itemIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/* Estilos para o conteúdo principal */
+.mainContent {
+    width: 70%;
     padding: 20px;
+    background-color: #F8FCFD;
+}
+
+/* Estilos para o título e controles no conteúdo principal */
+.mainHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.mainHeader h1 {
+    font-size: 34px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+}
+
+.controls input {
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.controls button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Estilos para o card */
+.card {
+    background-color: #EEFFF9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    align-items: center;
+    text-align: center;
+}
+
+.card h2 {
+    color: #1DA1F2;
+}
+
+.card img {
     width: 100%;
-    max-width: 500px;
+    height: 150px;
+    object-fit: cover;
+
 }
 
-.enquete-item img {
-    margin-top: 10px;
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
+.cardContent {
+    padding: 15px;
+    flex: 1;
 }
 
-.enquete-item strong {
-    font-size: 1.2rem;
-    color: #2c3e50;
+.cardTitle {
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 10px;
 }
 
-.enquete-item p {
-    color: #7f8c8d;
+.cardDescription {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+    margin-bottom: 15px;
 }
 
-.option-list {
-    padding-left: 20px;
+.cardButton {
+    align-self: flex-end;
+    padding: 10px 20px;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.option-item {
-    background-color: #bdc3c7;
-    padding: 10px;
-    margin: 5px 0;
-}
-
-.delete-button {
-    background-color: #e74c3c;
-    margin-top: 10px;
-}
-
-.delete-button:hover {
-    background-color: #c0392b;
-}
-
-@media (max-width: 768px) {
-
-    .input-field,
-    .select-field,
-    .textarea-field {
-        width: 100%;
-    }
-
-    .enquete-item {
-        width: 100%;
-    }
+.hr {
+    border: none;
+    height: 1px;
+    background-color: green;
+    /* Cor da linha horizontal */
+    margin: 20px 0;
+    /* Espaçamento vertical */
+    width: 100%;
+    /* Ocupa toda a largura da div */
 }
