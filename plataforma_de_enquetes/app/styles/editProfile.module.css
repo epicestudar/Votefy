@@ -1,0 +1,38 @@
+/* app/styles/editProfile.module.css */
+
+.container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputLabel {
+    margin-bottom: 10px;
+}
+
+.inputField {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submitButton {
+    padding: 10px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.submitButton:hover {
+    background-color: #005bb5;
+}
+

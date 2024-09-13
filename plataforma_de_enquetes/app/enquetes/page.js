@@ -7,6 +7,13 @@ import styles from "../styles/enquetes.module.css";
 
 export default function EnquetePage() {
   const [enquetes, setEnquetes] = useState([]);
+   const [userInfo, setUserInfo] = useState({
+     nome: "",
+     email: "",
+     cidade: "",
+     fotoDePerfil: "",
+   });
+   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -31,7 +38,24 @@ export default function EnquetePage() {
       }
     };
 
+    const fetchUserInfo = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch("/api/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUserInfo(data);
+      }
+    };
+
     fetchEnquetes();
+    fetchUserInfo(); // Chama a função para buscar os dados do usuário
   }, [router]);
 
   const deleteEnquete = async (id) => {
@@ -56,6 +80,28 @@ export default function EnquetePage() {
     router.push("/create");
   };
 
+  const handleEditProfile = () => {
+    router.push("/edit-profile");
+  };
+
+  const handleDelete = async () => {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch("/api/user", {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      alert("Perfil excluído com sucesso!");
+      router.push("/login"); // Redireciona para a página de login após exclusão
+    } else {
+      alert("Erro ao excluir perfil");
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -65,14 +111,46 @@ export default function EnquetePage() {
           <div className={styles.profile}>
             <div className={styles.profileInfo}>
               <img
-                src="/user-avatar.png"
+                src={userInfo.fotoDePerfil || "/img/user/user.png"} // Usa a foto do usuário ou uma imagem padrão
                 alt="Foto de Perfil"
                 className={styles.avatar}
               />
               <div className={styles.info}>
-                <h2>Nome do Usuário</h2>
-                <p>usuario@email.com</p>
-                <p>Cidade Exemplo</p>
+                <h2>{userInfo.nome}</h2>
+                <p>{userInfo.email}</p>
+                <p>{userInfo.cidade}</p>
+                <button
+                  onClick={handleEditProfile}
+                  className={styles.editButton}
+                >
+                  Editar Perfil
+                </button>
+                <button
+                  onClick={() => setShowModal(true)}
+                  className={styles.deleteButton}
+                >
+                  Deletar Perfil
+                </button>
+                {/* Modal de confirmação */}
+                {showModal && (
+                  <div className={styles.modal}>
+                    <div className={styles.modalContent}>
+                      <p>Você tem certeza que deseja apagar o seu perfil?</p>
+                      <button
+                        onClick={handleDelete}
+                        className={styles.confirmButton}
+                      >
+                        Sim
+                      </button>
+                      <button
+                        onClick={() => setShowModal(false)}
+                        className={styles.cancelButton}
+                      >
+                        Não
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <hr className={styles.hr} />

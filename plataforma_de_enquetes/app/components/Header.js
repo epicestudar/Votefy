@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./header.module.css"; // Importando os estilos
 
 export default function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = async () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    router.push("/login");
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
         {/* Coloque sua imagem de logo aqui */}
-        <img src="/logo.png" alt="Logo" />
+        <img src="/img/logo/logo.png" alt="Logo" />
       </div>
       <div className={styles.fields}>
         <a href="/criar-enquete" title="Criar Enquete" className={styles.link}>
@@ -19,9 +34,11 @@ export default function Header() {
           Histórico
         </a>
       </div>
-      <div className={styles.logout}>
-        <button>Sair</button>
-      </div>
+      {isLoggedIn && (
+        <div className={styles.logout}>
+          <button onClick={handleLogout}>Sair</button>
+        </div>
+      )}
     </header>
   );
 }
