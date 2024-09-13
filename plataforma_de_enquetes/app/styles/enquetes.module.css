@@ -250,3 +250,17 @@
     margin-top: 10px;
     cursor: pointer;
 }
+/* styles.module.css */
+.editButton {
+    border: 1px solid #ffc107;
+    /* Cor da borda para editar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}
+
+.deleteButton {
+    border: 1px solid #dc3545;
+    /* Cor da borda para deletar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}

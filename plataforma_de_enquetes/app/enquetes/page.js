@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styles from "../styles/enquetes.module.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function EnquetePage() {
   const [enquetes, setEnquetes] = useState([]);
@@ -122,16 +123,17 @@ export default function EnquetePage() {
                 <p>{userInfo.cidade}</p>
                 <button
                   onClick={handleEditProfile}
-                  className={styles.editButton}
+                  className="btn btn-warning me-2 editButton" // Adiciona estilização personalizada
                 >
                   Editar Perfil
                 </button>
                 <button
                   onClick={() => setShowModal(true)}
-                  className={styles.deleteButton}
+                  className="btn btn-danger deleteButton" // Adiciona estilização personalizada
                 >
                   Deletar Perfil
                 </button>
+
                 {/* Modal de confirmação */}
                 {showModal && (
                   <div className={styles.modal}>
@@ -163,7 +165,7 @@ export default function EnquetePage() {
                   <ul>
                     <li className={styles.listItem}>
                       <img
-                        src="/icon-active.png"
+                        src="/img/icons/enquete_ativa.png"
                         alt="Ícone Ativo"
                         className={styles.itemIcon}
                       />
@@ -176,7 +178,7 @@ export default function EnquetePage() {
                   <ul>
                     <li className={styles.listItem}>
                       <img
-                        src="/icon-finished.png"
+                        src="img/icons/enquete_finalizada.png"
                         alt="Ícone Finalizado"
                         className={styles.itemIcon}
                       />
