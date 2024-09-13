@@ -51,6 +51,11 @@ export default function EnquetePage() {
     router.push(`/edit/${id}`);
   };
 
+  // Adicionando botão para criar enquete
+  const handleCreateEnquete = () => {
+    router.push("/create");
+  };
+
   return (
     <div>
       <Header />
@@ -112,6 +117,12 @@ export default function EnquetePage() {
             <div className={styles.controls}>
               <input type="text" placeholder="Pesquisar..." />
               <button>Filtro</button>
+              <button
+                onClick={handleCreateEnquete}
+                className={styles.createButton}
+              >
+                Criar Enquete
+              </button>
             </div>
           </div>
 
