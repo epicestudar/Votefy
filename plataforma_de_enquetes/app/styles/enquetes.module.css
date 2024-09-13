@@ -1,113 +1,109 @@
-/* styles/enquetes.module.css */
+/* Estilos para enquetes.module.css */
+
 .container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.heading {
-    text-align: center;
-    color: #333;
-}
-
-.form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
-.formLabel {
-    font-weight: bold;
-    color: #333;
+.enquetes-title {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
-.formInput,
-.formTextarea,
-.formSelect {
-    width: 100%;
-    padding: 0.75rem;
+.input-field,
+.select-field,
+.textarea-field {
+    width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
     font-size: 1rem;
 }
 
-.formInput:focus,
-.formTextarea:focus,
-.formSelect:focus {
-    outline: none;
-    border-color: #0070f3;
-    box-shadow: 0 0 5px rgba(0, 112, 243, 0.5);
+.textarea-field {
+    height: 100px;
 }
 
-.formButton {
-    padding: 0.75rem;
-    background-color: #0070f3;
+.add-button {
+    padding: 10px 20px;
+    background-color: #3498db;
     color: white;
     border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
 }
 
-.formButton:hover {
-    background-color: #005bb5;
+.add-button:hover {
+    background-color: #2980b9;
 }
 
-.list {
+.enquete-list {
     list-style-type: none;
     padding: 0;
+    margin-top: 20px;
+    width: 100%;
 }
 
-.item {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.enquete-item {
+    background-color: #ecf0f1;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
 }
 
-.itemHeading {
-    margin-top: 0;
-}
-
-.image {
+.enquete-item img {
+    margin-top: 10px;
     max-width: 100%;
     height: auto;
-    display: block;
-    margin-top: 0.5rem;
+    border-radius: 5px;
 }
 
-.deleteButton {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.enquete-item strong {
+    font-size: 1.2rem;
+    color: #2c3e50;
 }
 
-.deleteButton:hover {
-    background-color: #cc0000;
+.enquete-item p {
+    color: #7f8c8d;
 }
 
-/* Responsividade */
+.option-list {
+    padding-left: 20px;
+}
+
+.option-item {
+    background-color: #bdc3c7;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+    margin-top: 10px;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
 @media (max-width: 768px) {
-    .container {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
-}
 
-@media (max-width: 480px) {
-    .container {
-        padding: 1rem;
-        margin: 0.5rem;
+    .input-field,
+    .select-field,
+    .textarea-field {
+        width: 100%;
+    }
+
+    .enquete-item {
+        width: 100%;
     }
 }

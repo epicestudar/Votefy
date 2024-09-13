@@ -1,0 +1,52 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px;
+    background-color: #f5f5f5;
+    border-style: solid;
+    border-bottom-color: black;
+    border-width: 5px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.fields {
+    display: flex;
+    gap: 10px;
+}
+
+.fields input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para o link */
+.link {
+    display: inline-block;
+    padding: 5px 10px;
+
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.link:hover {
+    background-color: #005bb5;
+}
+
+.logout button {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout button:hover {
+    background-color: #d32f2f;
+}
