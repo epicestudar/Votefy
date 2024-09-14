@@ -213,12 +213,6 @@ export default function EnquetePage() {
                 onChange={handleSearchChange} // Função de busca
               />
               <button>Filtro</button>
-              <button
-                onClick={handleCreateEnquete}
-                className={styles.createButton}
-              >
-                Criar Enquete
-              </button>
             </div>
           </div>
 

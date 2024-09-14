@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 /* Estilos da página principal */
 .container {
     display: flex;
@@ -12,10 +15,20 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    /* Ajuste para empilhar perfil e histórico */
     height: 900px;
-    border-style: solid;
-    border-color: green;
+    position: relative;
+}
+
+.sidebar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    /* Largura da linha */
+    height: 100%;
+    background-color: #17BF63;
+    /* Cor da linha */
 }
 
 /* Contêiner para a imagem e informações */
@@ -40,10 +53,14 @@
 }
 
 .info h2 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
     font-size: 17px;
 }
 
 .info p {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
 }
 
@@ -53,6 +70,7 @@
 }
 
 .history h3 {
+    font-family: 'Roboto', sans-serif;
     margin-bottom: 10px;
     font-size: 30px;
 }
@@ -67,6 +85,7 @@
 }
 
 .section h4 {
+    font-family: 'Roboto', sans-serif;
     font-size: 22px;
     margin-bottom: 10px;
 }
@@ -86,13 +105,13 @@
     color: #1DA1F2;
     border-style: solid;
     border-color: #1DA1F2;
-
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
 
 
 .itemIcon {
-    width: 24px;
-    height: 24px;
+    width: 40px;
     margin-right: 10px;
 }
 
@@ -150,6 +169,7 @@
     /* Cada card vai ocupar 100% da largura da coluna */
     align-items: center;
     text-align: center;
+    border-color: #17BF63;
 }
 
 .card h2 {
@@ -172,13 +192,17 @@
     font-size: 20px;
     margin: 0;
     margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
 }
 
 .cardDescription {
     font-size: 16px;
-    color: #666;
+    color: #657786;
     margin: 0;
     margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
 .cardButton {
@@ -252,18 +276,48 @@
         cursor: pointer;
 }
 /* styles.module.css */
+/* Botão de editar perfil */
 .editButton {
     border: 1px solid #ffc107;
-    /* Cor da borda para editar */
+    /* Cor da borda */
+    background-color: #ffc107;
+    /* Cor de fundo */
+    color: white;
+    padding: 10px 20px;
+    /* Espaçamento interno */
+    border-radius: 4px;
+    /* Borda arredondada */
+    margin-bottom: 10px;
+    /* Espaçamento entre os botões */
+    cursor: pointer;
+    width: 100%;
+    /* O botão ocupará toda a largura do container */
+    text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Sombra suave */
 }
 
+/* Botão de excluir perfil */
 .deleteButton {
     border: 1px solid #dc3545;
-    /* Cor da borda para deletar */
+    /* Cor da borda */
+    background-color: #dc3545;
+    /* Cor de fundo */
+    color: white;
+    padding: 10px 20px;
+    /* Espaçamento interno */
+    border-radius: 4px;
+    /* Borda arredondada */
+    cursor: pointer;
+    /* O botão ocupará toda a largura do container */
+    text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Sombra suave */
+}
+
+/* Adiciona um espaço entre os botões e o restante do conteúdo */
+.info button {
+    margin-bottom: 10px;
 }
 .enquete-list {
     display: grid;
