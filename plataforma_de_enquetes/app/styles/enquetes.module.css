@@ -4,9 +4,6 @@
     color: black;
 }
 
-
-
-
 /* Estilos para a sidebar à esquerda */
 .sidebar {
     width: 30%;
@@ -149,7 +146,8 @@
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 100%;
+    /* Cada card vai ocupar 100% da largura da coluna */
     align-items: center;
     text-align: center;
 }
@@ -187,11 +185,13 @@
     align-self: flex-end;
     padding: 10px 20px;
     border: none;
+    margin: 5px;
     background-color: green;
     color: white;
     border-radius: 4px;
     cursor: pointer;
 }
+
 
 .hr {
     border: none;
@@ -243,12 +243,13 @@
 }
 
 .deleteButton {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
+        padding: 10px 20px;
+        border: none;
+        margin: 5px;
+        background-color: rgb(255, 0, 0);
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
 }
 /* styles.module.css */
 .editButton {
@@ -263,4 +264,14 @@
     /* Cor da borda para deletar */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Sombra suave */
+}
+.enquete-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Cria duas colunas */
+    gap: 20px;
+    /* Espaçamento entre os cards */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }

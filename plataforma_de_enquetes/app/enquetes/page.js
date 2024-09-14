@@ -116,6 +116,7 @@ export default function EnquetePage() {
   return (
     <div>
       <Header />
+      <hr></hr>
       <div className={styles.container}>
         {/* Div do lado esquerdo - Perfil do Usuário */}
         <div className={styles.sidebar}>

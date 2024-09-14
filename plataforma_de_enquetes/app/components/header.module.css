@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
 }
 
 .logo {
@@ -11,7 +15,7 @@
 }
 
 .logo img {
-    height: 40px;
+    height: 100px;
     /* Ajuste conforme necessário */
 }
 
@@ -26,7 +30,8 @@
 
 .link {
     text-decoration: none;
-    color: #007bff;
+    color: #1DA1F2;
+    font-size: 20px;
 }
 
 .logout {
@@ -43,6 +48,7 @@
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .logoutBtn:hover {
