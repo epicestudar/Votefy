@@ -80,38 +80,44 @@ export const addEnquete = async (req) => {
   }
 };
 
-
-
-
-
 // Função para atualizar uma enquete
-export const updateEnquete = async (req) => {
-  const { id } = req.query; // Certifique-se de que `req.query` é o método correto para obter o ID
-  const data = await req.json();
-  await connectMongo();
-
+export const updateEnquete = async (req, id) => {
   try {
+    await connectMongo();
+    const { titulo, descricao, categoria, imagem, opcoes } = await req.json();
+
     const updatedEnquete = await Enquete.findOneAndUpdate(
-      { _id: id, usuarioId: req.user.userId }, // Altere 'userId' para 'usuarioId'
-      data,
-      { new: true }
+      { _id: id, usuarioId: req.user.userId }, // Certifique-se de que o 'id' e o 'usuarioId' estejam corretos
+      {
+        titulo,
+        descricao,
+        categoria,
+        imagem,
+        opcoes,
+      },
+      { new: true } // Retorna a enquete atualizada
     );
+
     if (!updatedEnquete) {
       return new Response(
-        JSON.stringify({ message: "Enquete não encontrada" }),
+        JSON.stringify({
+          error: "Enquete não encontrada ou não pertence ao usuário",
+        }),
         {
           status: 404,
           headers: { "Content-Type": "application/json" },
         }
       );
     }
+
     return new Response(JSON.stringify({ enquete: updatedEnquete }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
+    console.error("Erro ao atualizar enquete:", error);
     return new Response(
-      JSON.stringify({ message: "Erro ao atualizar a enquete" }),
+      JSON.stringify({ error: "Erro ao atualizar enquete" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -119,6 +125,8 @@ export const updateEnquete = async (req) => {
     );
   }
 };
+
+
 
 // Função para deletar uma enquete
 export const deleteEnquete = async (req) => {

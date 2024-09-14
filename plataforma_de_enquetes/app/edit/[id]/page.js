@@ -1,90 +1,162 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRouter, useParams } from "next/navigation"; // Certifique-se de que está importando `useParams`
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function EditEnquetePage({ params }) {
+export default function EditEnquetePage() {
+  const [enquete, setEnquete] = useState({
+    titulo: "",
+    descricao: "",
+    categoria: "",
+    imagem: "",
+    opcoes: [{ texto: "" }],
+  });
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [opcoes, setOpcoes] = useState([]);
+  const { id } = useParams(); // Obtém o ID da URL
 
   useEffect(() => {
     const fetchEnquete = async () => {
-      // Acessar o ID a partir de `params.id` (é passado via props)
-      const response = await fetch(`/api/enquetes/${params.id}`);
-      const data = await response.json();
+      try {
+        const token = localStorage.getItem("token");
 
-      if (response.ok) {
-        setTitulo(data.titulo);
-        setDescricao(data.descricao);
-        setCategoria(data.categoria);
-        setOpcoes(data.opcoes);
-      } else {
-        console.error("Erro ao carregar enquete", data.message);
+        const response = await fetch(`/api/enquetes?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.enquetes) {
+            setEnquete(data.enquetes[0]); // Supondo que seja um array de enquetes
+          }
+          setLoading(false);
+        } else {
+          console.error("Erro ao buscar a enquete");
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+        setLoading(false);
       }
     };
 
     fetchEnquete();
-  }, [params.id]); // Usar params.id diretamente
+  }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEnquete((prevEnquete) => ({ ...prevEnquete, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
 
-    const updatedEnquete = {
-      titulo,
-      descricao,
-      categoria,
-      opcoes,
-    };
-
-    const response = await fetch(`/api/enquetes/${params.id}`, {
+    const response = await fetch(`/api/enquetes?id=${id}`, {
+      // ID deve estar correto aqui
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(updatedEnquete),
+      body: JSON.stringify({
+        titulo: enquete.titulo,
+        descricao: enquete.descricao,
+        categoria: enquete.categoria,
+        imagem: enquete.imagem,
+        opcoes: enquete.opcoes,
+      }),
     });
 
     if (response.ok) {
-      router.push("/"); // Redireciona para a página inicial após salvar
+      router.push("/enquetes");
     } else {
-      console.error("Erro ao atualizar enquete");
+      console.error("Erro ao atualizar a enquete");
     }
   };
 
+
+
+  if (loading) {
+    return <div>Carregando...</div>; // Exibe um indicador de carregamento
+  }
+
   return (
     <div>
-      <h1>Editar Enquete</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
-          placeholder="Título da enquete"
-        />
-        <textarea
-          value={descricao}
-          onChange={(e) => setDescricao(e.target.value)}
-          placeholder="Descrição da enquete"
-        />
-        <select
-          value={categoria}
-          onChange={(e) => setCategoria(e.target.value)}
-        >
-          <option value="Tecnologia">Tecnologia</option>
-          <option value="Esportes">Esportes</option>
-          <option value="Viagens">Viagens</option>
-          <option value="Comida">Comida</option>
-          <option value="Política">Política</option>
-          <option value="Educação">Educação</option>
-          {/* Adicione mais categorias aqui */}
-        </select>
-
-        {/* Código para editar as opções */}
-        <button type="submit">Salvar Alterações</button>
-      </form>
+      <Header />
+      <div className="container mt-5">
+        <h1>Editar Enquete</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group mb-3">
+            <label htmlFor="titulo">Título</label>
+            <input
+              type="text"
+              id="titulo"
+              name="titulo"
+              className="form-control"
+              value={enquete.titulo}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="descricao">Descrição</label>
+            <textarea
+              id="descricao"
+              name="descricao"
+              className="form-control"
+              value={enquete.descricao}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="categoria">Categoria</label>
+            <input
+              type="text"
+              id="categoria"
+              name="categoria"
+              className="form-control"
+              value={enquete.categoria}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="imagem">URL da Imagem</label>
+            <input
+              type="text"
+              id="imagem"
+              name="imagem"
+              className="form-control"
+              value={enquete.imagem}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label>Opções</label>
+            {enquete.opcoes.map((opcao, index) => (
+              <input
+                key={index}
+                type="text"
+                className="form-control mb-2"
+                value={opcao.texto}
+                onChange={(e) => {
+                  const newOpcoes = [...enquete.opcoes];
+                  newOpcoes[index].texto = e.target.value;
+                  setEnquete({ ...enquete, opcoes: newOpcoes });
+                }}
+              />
+            ))}
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Atualizar Enquete
+          </button>
+        </form>
+      </div>
+      <Footer />
     </div>
   );
 }

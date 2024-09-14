@@ -23,7 +23,17 @@ export async function POST(req) {
 // Handler para PUT
 export async function PUT(req) {
   return jwtMiddleware(async (req) => {
-    return await updateEnquete(req);
+    const url = new URL(req.url);
+    const id = url.searchParams.get("id"); // Extrai o 'id' da query string
+
+    if (!id) {
+      return new Response(
+        JSON.stringify({ error: "ID da enquete não fornecido" }),
+        { status: 400 }
+      );
+    }
+
+    return await updateEnquete(req, id); // Passa o 'id' para o controlador
   })(req);
 }
 
