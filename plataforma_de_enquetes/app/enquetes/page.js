@@ -9,13 +9,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function EnquetePage() {
   const [enquetes, setEnquetes] = useState([]);
-   const [userInfo, setUserInfo] = useState({
-     nome: "",
-     email: "",
-     cidade: "",
-     fotoDePerfil: "",
-   });
-   const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    nome: "",
+    email: "",
+    cidade: "",
+    fotoDePerfil: "",
+  });
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function EnquetePage() {
     };
 
     fetchEnquetes();
-    fetchUserInfo(); // Chama a função para buscar os dados do usuário
+    fetchUserInfo();
   }, [router]);
 
   const deleteEnquete = async (id) => {
@@ -77,32 +78,40 @@ export default function EnquetePage() {
     router.push(`/edit/${id}`);
   };
 
-  // Adicionando botão para criar enquete
   const handleCreateEnquete = () => {
     router.push("/create");
   };
 
-  const handleEditProfile = () => {
-    router.push("/edit-profile");
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value); // Atualiza o termo de busca
   };
 
-  const handleDelete = async () => {
-    const token = localStorage.getItem("token");
+  // Filtra as enquetes com base no termo de busca
+  const filteredEnquetes = enquetes.filter((enquete) =>
+    enquete.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-    const response = await fetch("/api/user", {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+   const handleEditProfile = () => {
+     router.push("/edit-profile");
+   };
 
-    if (response.ok) {
-      alert("Perfil excluído com sucesso!");
-      router.push("/login"); // Redireciona para a página de login após exclusão
-    } else {
-      alert("Erro ao excluir perfil");
-    }
-  };
+   const handleDelete = async () => {
+     const token = localStorage.getItem("token");
+
+     const response = await fetch("/api/user", {
+       method: "DELETE",
+       headers: {
+         Authorization: `Bearer ${token}`,
+       },
+     });
+
+     if (response.ok) {
+       alert("Perfil excluído com sucesso!");
+       router.push("/login"); // Redireciona para a página de login após exclusão
+     } else {
+       alert("Erro ao excluir perfil");
+     }
+   };
 
   return (
     <div>
@@ -191,12 +200,17 @@ export default function EnquetePage() {
           </div>
         </div>
 
-        {/* Conteúdo principal - Lado direito */}
+        {/* Conteúdo principal */}
         <div className={styles.mainContent}>
           <div className={styles.mainHeader}>
             <h1>Enquetes</h1>
             <div className={styles.controls}>
-              <input type="text" placeholder="Pesquisar..." />
+              <input
+                type="text"
+                placeholder="Pesquisar..."
+                value={searchTerm}
+                onChange={handleSearchChange} // Função de busca
+              />
               <button>Filtro</button>
               <button
                 onClick={handleCreateEnquete}
@@ -207,9 +221,9 @@ export default function EnquetePage() {
             </div>
           </div>
 
-          {/* Listagem de enquetes estilizada */}
+          {/* Listagem de enquetes filtrada */}
           <ul className={styles["enquete-list"]}>
-            {enquetes.map((enquete) => (
+            {filteredEnquetes.map((enquete) => (
               <li key={enquete._id} className={styles.card}>
                 {enquete.imagem && (
                   <img

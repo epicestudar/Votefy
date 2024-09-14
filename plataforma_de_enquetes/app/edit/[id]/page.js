@@ -80,8 +80,6 @@ export default function EditEnquetePage() {
     }
   };
 
-
-
   if (loading) {
     return <div>Carregando...</div>; // Exibe um indicador de carregamento
   }

@@ -126,8 +126,6 @@ export const updateEnquete = async (req, id) => {
   }
 };
 
-
-
 // Função para deletar uma enquete
 export const deleteEnquete = async (req) => {
   const url = new URL(req.url);
