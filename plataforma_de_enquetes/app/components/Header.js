@@ -1,9 +1,9 @@
-"use client"; // Adiciona a diretiva "use client" para indicar que este é um componente de cliente
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link"; // Importa o componente Link para navegação
-import styles from "./header.module.css"; // Importando os estilos
+import Link from "next/link";
+import styles from "./header.module.css";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,10 +20,14 @@ export default function Header() {
     router.push("/login");
   };
 
+  // Função para navegação programática para criar enquete
+  const navigateToCreateEnquete = () => {
+    router.push("/create"); // Substitua "/create" pela rota correta para o formulário de criação
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        {/* Link para a página inicial */}
         <Link href="/" passHref>
           <img src="/img/logo/logo.png" alt="Logo" />
         </Link>
@@ -35,6 +39,10 @@ export default function Header() {
               href="/criar-enquete"
               title="Criar Enquete"
               className={styles.link}
+              onClick={(e) => {
+                e.preventDefault(); // Previne o comportamento padrão do link
+                navigateToCreateEnquete(); // Navega para a página de criação de enquete
+              }}
             >
               Criar Enquete
             </a>
