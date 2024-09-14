@@ -25,6 +25,10 @@ export default function Header() {
     router.push("/create"); // Substitua "/create" pela rota correta para o formulário de criação
   };
 
+  const enquetesDoUsuario = () => {
+    router.push("/usuario_enquetes"); // Substitua "/create" pela rota correta para o formulário de criação
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -47,9 +51,13 @@ export default function Header() {
               Criar Enquete
             </a>
             <a
-              href="/suas_enquetes"
-              title="Suas Enquetes"
+              href="/criar-enquete"
+              title="Criar Enquete"
               className={styles.link}
+              onClick={(e) => {
+                e.preventDefault(); // Previne o comportamento padrão do link
+                enquetesDoUsuario(); // Navega para a página de criação de enquete
+              }}
             >
               Suas Enquetes
             </a>

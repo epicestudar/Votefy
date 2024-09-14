@@ -150,7 +150,7 @@
     margin-left: 10px;
     padding: 10px 20px;
     border: none;
-    background-color: green;
+    background-color: #657786;
     color: white;
     cursor: pointer;
     border-radius: 4px;
@@ -328,4 +328,18 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+.verMaisButton {
+    padding: 10px 20px;
+    background-color: #1DA1F2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.verMaisButton:hover {
+    background-color: #0056b3;
 }

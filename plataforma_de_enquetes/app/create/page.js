@@ -45,7 +45,7 @@ export default function CriarEnquetePage() {
       opcoes: novasOpcoes.filter((opcao) => opcao.texto.trim() !== ""),
     };
 
-    const response = await fetch("/api/enquetes", {
+    const response = await fetch("/api/enquetes/usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,11 +1,16 @@
 import Enquete from "@/models/Enquete";
 import connectMongo from "@/utils/dbConnect";
 
-// Função para obter todas as enquetes
-export const getEnquete = async (req) => {
+
+
+
+// Função para obter todas as enquetes que o usuário NÃO criou
+export const getEnquetesExcludingUser = async (req) => {
   await connectMongo();
   try {
-    const enquetes = await Enquete.find({ usuarioId: req.user.userId }); // Altere 'userId' para 'usuarioId'
+    const usuarioId = req.user.userId; // ID do usuário autenticado
+    // Busca todas as enquetes exceto as criadas pelo usuário logado
+    const enquetes = await Enquete.find({ usuarioId: { $ne: usuarioId } });
     return new Response(JSON.stringify({ enquetes }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
@@ -17,6 +22,29 @@ export const getEnquete = async (req) => {
     });
   }
 };
+
+// Função para obter todas as enquetes que o usuário criou
+export const getUserEnquetes = async (req) => {
+  await connectMongo();
+  try {
+    const usuarioId = req.user.userId; // ID do usuário autenticado
+    // Busca todas as enquetes criadas pelo usuário logado
+    const enquetes = await Enquete.find({ usuarioId: usuarioId });
+    return new Response(JSON.stringify({ enquetes }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ error: "Erro ao buscar enquetes do usuário" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+};
+
 
 export const addEnquete = async (req) => {
   try {

@@ -7,9 +7,8 @@ import Footer from "../components/Footer";
 import styles from "../styles/enquetes.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function EnquetePage() {
+export default function SuasEnquetesPage() {
   const [enquetes, setEnquetes] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const [userInfo, setUserInfo] = useState({
     nome: "",
     email: "",
@@ -19,6 +18,8 @@ export default function EnquetePage() {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     const fetchEnquetes = async () => {
       const token = localStorage.getItem("token");
@@ -27,7 +28,7 @@ export default function EnquetePage() {
         return;
       }
 
-      const response = await fetch("/api/enquetes", {
+      const response = await fetch("/api/enquetes/usuario", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -64,7 +65,7 @@ export default function EnquetePage() {
   const deleteEnquete = async (id) => {
     const token = localStorage.getItem("token");
 
-    await fetch(`/api/enquetes?id=${id}`, {
+    await fetch(`/api/enquetes/usuario?id=${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -79,7 +80,7 @@ export default function EnquetePage() {
   };
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value); // Atualiza o termo de busca
+    setSearchTerm(e.target.value);
   };
 
   // Filtra as enquetes com base no termo de busca
@@ -87,27 +88,27 @@ export default function EnquetePage() {
     enquete.titulo.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-   const handleEditProfile = () => {
-     router.push("/edit-profile");
-   };
+  const handleEditProfile = () => {
+    router.push("/edit-profile");
+  };
 
-   const handleDelete = async () => {
-     const token = localStorage.getItem("token");
+  const handleDelete = async () => {
+    const token = localStorage.getItem("token");
 
-     const response = await fetch("/api/user", {
-       method: "DELETE",
-       headers: {
-         Authorization: `Bearer ${token}`,
-       },
-     });
+    const response = await fetch("/api/user", {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-     if (response.ok) {
-       alert("Perfil excluído com sucesso!");
-       router.push("/login"); // Redireciona para a página de login após exclusão
-     } else {
-       alert("Erro ao excluir perfil");
-     }
-   };
+    if (response.ok) {
+      alert("Perfil excluído com sucesso!");
+      router.push("/login"); // Redireciona para a página de login após exclusão
+    } else {
+      alert("Erro ao excluir perfil");
+    }
+  };
 
   return (
     <div>
@@ -119,7 +120,7 @@ export default function EnquetePage() {
           <div className={styles.profile}>
             <div className={styles.profileInfo}>
               <img
-                src={userInfo.fotoDePerfil || "/img/user/user.png"} // Usa a foto do usuário ou uma imagem padrão
+                src={userInfo.fotoDePerfil || "/img/user/user.png"}
                 alt="Foto de Perfil"
                 className={styles.avatar}
               />
@@ -129,13 +130,13 @@ export default function EnquetePage() {
                 <p>{userInfo.cidade}</p>
                 <button
                   onClick={handleEditProfile}
-                  className="btn btn-warning me-2 editButton" // Adiciona estilização personalizada
+                  className="btn btn-warning me-2 editButton"
                 >
                   Editar Perfil
                 </button>
                 <button
                   onClick={() => setShowModal(true)}
-                  className="btn btn-danger deleteButton" // Adiciona estilização personalizada
+                  className="btn btn-danger deleteButton"
                 >
                   Deletar Perfil
                 </button>
@@ -200,15 +201,21 @@ export default function EnquetePage() {
         {/* Conteúdo principal */}
         <div className={styles.mainContent}>
           <div className={styles.mainHeader}>
-            <h1>Enquetes</h1>
+            <h1>Suas Enquetes</h1>
             <div className={styles.controls}>
               <input
                 type="text"
                 placeholder="Pesquisar..."
                 value={searchTerm}
-                onChange={handleSearchChange} // Função de busca
+                onChange={handleSearchChange}
               />
               <button>Filtro</button>
+              <button
+                onClick={() => router.push("/create")}
+                className={styles.createButton}
+              >
+                Criar Enquete
+              </button>
             </div>
           </div>
 
@@ -226,7 +233,9 @@ export default function EnquetePage() {
                 <div className={styles.cardContent}>
                   <h2 className={styles.cardTitle}>{enquete.titulo}</h2>
                   <p className={styles.cardDescription}>{enquete.descricao}</p>
-                  
+                  <p>
+                    <strong>Categoria:</strong> {enquete.categoria}
+                  </p>
                   <p>
                     <strong>Opções:</strong>
                   </p>
@@ -238,12 +247,17 @@ export default function EnquetePage() {
                     ))}
                   </ul>
                   <div className={styles.cardActions}>
-                    {/* Substituindo Editar e Excluir por "Ver mais" */}
                     <button
-                      onClick={() => handleViewMore(enquete._id)}
-                      className={styles.verMaisButton}
+                      onClick={() => handleEdit(enquete._id)}
+                      className={styles.cardButton}
                     >
-                      Ver mais
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => deleteEnquete(enquete._id)}
+                      className={styles.deleteButton}
+                    >
+                      Excluir
                     </button>
                   </div>
                 </div>
@@ -255,5 +269,4 @@ export default function EnquetePage() {
       <Footer />
     </div>
   );
-
 }
