@@ -210,12 +210,7 @@ export default function SuasEnquetesPage() {
                 onChange={handleSearchChange}
               />
               <button>Filtro</button>
-              <button
-                onClick={() => router.push("/create")}
-                className={styles.createButton}
-              >
-                Criar Enquete
-              </button>
+              
             </div>
           </div>
 

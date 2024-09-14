@@ -226,7 +226,7 @@ export default function EnquetePage() {
                 <div className={styles.cardContent}>
                   <h2 className={styles.cardTitle}>{enquete.titulo}</h2>
                   <p className={styles.cardDescription}>{enquete.descricao}</p>
-                  
+
                   <p>
                     <strong>Opções:</strong>
                   </p>
@@ -240,7 +240,7 @@ export default function EnquetePage() {
                   <div className={styles.cardActions}>
                     {/* Substituindo Editar e Excluir por "Ver mais" */}
                     <button
-                      onClick={() => handleViewMore(enquete._id)}
+                      onClick={() => router.push(`/enquetes/${enquete._id}`)}
                       className={styles.verMaisButton}
                     >
                       Ver mais
