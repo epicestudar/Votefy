@@ -7,6 +7,12 @@ form {
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+form.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 form input {
@@ -16,6 +22,7 @@ form input {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
+    transition: opacity 0.5s ease-out;
 }
 
 form input:focus {
@@ -33,59 +40,41 @@ form button {
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, opacity 0.5s ease-out;
+}
+
+form button:disabled {
+    background-color: #005bb5;
+    cursor: not-allowed;
 }
 
 form button:hover {
     background-color: #005bb5;
 }
 
-/* Títulos e textos */
-h1,
-h2 {
+/* Estilos para a mensagem de redirecionamento */
+.redirectContainer {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color: #333;
+    font-size: 1.25rem;
 }
 
-p {
-    text-align: center;
-    color: #666;
-}
-
-/* Mensagens de erro */
-.error {
-    color: red;
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-/* Estilos para labels */
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-/* Para campos opcionais */
-.optional {
-    font-size: 0.9rem;
-    color: #888;
-}
-
-/* Botão extra para links */
-.link-btn {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.link-btn a {
+.redirectMessage {
     color: #0070f3;
-    text-decoration: none;
+    font-weight: bold;
 }
 
-.link-btn a:hover {
-    text-decoration: underline;
+/* Título da página de login */
+.form .title{
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
 }
 
 /* Responsividade */
@@ -94,10 +83,20 @@ label {
         padding: 1.5rem;
         margin: 2rem 1rem;
     }
+
+    .redirectContainer {
+        padding: 1.5rem;
+        margin: 2rem 1rem;
+    }
 }
 
 @media (max-width: 480px) {
     form {
+        padding: 1rem;
+        margin: 1rem 0.5rem;
+    }
+
+    .redirectContainer {
         padding: 1rem;
         margin: 1rem 0.5rem;
     }

@@ -60,6 +60,7 @@ export default function EditProfilePage() {
   return (
     <div>
       <Header />
+      <hr></hr>
       <div className="container mt-5">
         <h1 className="mb-4">Editar Perfil</h1>
         <form onSubmit={handleSubmit}>

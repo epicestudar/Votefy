@@ -51,6 +51,7 @@ export default function DetalhesEnquete({ params }) {
    return (
      <div>
        <Header />
+       <hr></hr>
        <div className={styles.container}>
          {/* Título da enquete centralizado */}
          <h1 className={styles.title}>{enquete.titulo}</h1>

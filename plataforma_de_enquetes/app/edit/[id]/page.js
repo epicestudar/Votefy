@@ -87,6 +87,7 @@ export default function EditEnquetePage() {
   return (
     <div>
       <Header />
+      <hr></hr>
       <div className="container mt-5">
         <h1>Editar Enquete</h1>
         <form onSubmit={handleSubmit}>

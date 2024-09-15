@@ -1,29 +1,44 @@
 /* page.module.css */
-.list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.carouselImg {
+    height: 400px;
+    /* Ajuste para manter as imagens do carrossel do mesmo tamanho */
+    object-fit: cover;
 }
 
-.item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 10px;
+.carouselTitle {
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.itemHeading {
+.main {
+    padding: 2rem;
+}
+
+.card-title {
     font-size: 1.5rem;
-    margin: 0;
-    color: #333;
+    font-weight: bold;
 }
 
-.carousel-img {
-   width: 100px;
+.card-text {
+    font-size: 1.2rem;
+    color: #555;
 }
 
-.card-img-top {
-    
-    /* Ajuste conforme necessário */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.btn-primary {
+    background-color: #0070f3;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #005bb5;
 }

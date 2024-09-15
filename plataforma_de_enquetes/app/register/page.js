@@ -33,6 +33,7 @@ export default function Register() {
   return (
     <div>
       <Header />
+      <hr></hr>
       <form onSubmit={handleRegister}>
         <input
           type="text"

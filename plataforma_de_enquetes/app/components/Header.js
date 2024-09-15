@@ -20,13 +20,12 @@ export default function Header() {
     router.push("/login");
   };
 
-  // Função para navegação programática para criar enquete
   const navigateToCreateEnquete = () => {
-    router.push("/create"); // Substitua "/create" pela rota correta para o formulário de criação
+    router.push("/create");
   };
 
   const enquetesDoUsuario = () => {
-    router.push("/usuario_enquetes"); // Substitua "/create" pela rota correta para o formulário de criação
+    router.push("/usuario_enquetes");
   };
 
   return (
@@ -36,6 +35,7 @@ export default function Header() {
           <img src="/img/logo/logo.png" alt="Logo" />
         </Link>
       </div>
+
       <div className={styles.fields}>
         {isLoggedIn ? (
           <>
@@ -44,19 +44,19 @@ export default function Header() {
               title="Criar Enquete"
               className={styles.link}
               onClick={(e) => {
-                e.preventDefault(); // Previne o comportamento padrão do link
-                navigateToCreateEnquete(); // Navega para a página de criação de enquete
+                e.preventDefault();
+                navigateToCreateEnquete();
               }}
             >
               Criar Enquete
             </a>
             <a
-              href="/criar-enquete"
-              title="Criar Enquete"
+              href="/enquetes-usuario"
+              title="Suas Enquetes"
               className={styles.link}
               onClick={(e) => {
-                e.preventDefault(); // Previne o comportamento padrão do link
-                enquetesDoUsuario(); // Navega para a página de criação de enquete
+                e.preventDefault();
+                enquetesDoUsuario();
               }}
             >
               Suas Enquetes
@@ -76,6 +76,7 @@ export default function Header() {
           </>
         )}
       </div>
+
       {isLoggedIn && (
         <div className={styles.logout}>
           <button onClick={handleLogout} className={styles.logoutBtn}>
