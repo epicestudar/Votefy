@@ -1,8 +1,38 @@
 import Enquete from "@/models/Enquete";
 import connectMongo from "@/utils/dbConnect";
+import mongoose from "mongoose";
 
 
 
+export async function getEnqueteById(req) {
+  try {
+    const url = new URL(req.url);
+    const id = url.searchParams.get("id");
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return new Response(JSON.stringify({ error: "ID inválido" }), {
+        status: 400,
+      });
+    }
+
+    const enquete = await Enquete.findById(id);
+
+    if (!enquete) {
+      return new Response(JSON.stringify({ error: "Enquete não encontrada" }), {
+        status: 404,
+      });
+    }
+
+    return new Response(JSON.stringify({ enquete }), {
+      status: 200,
+    });
+  } catch (error) {
+    console.error("Erro ao buscar enquete:", error);
+    return new Response(JSON.stringify({ error: "Erro ao buscar enquete" }), {
+      status: 500,
+    });
+  }
+}
 
 // Função para obter todas as enquetes que o usuário NÃO criou
 export const getEnquetesExcludingUser = async (req) => {
@@ -44,6 +74,7 @@ export const getUserEnquetes = async (req) => {
     );
   }
 };
+
 
 
 

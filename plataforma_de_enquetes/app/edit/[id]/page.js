@@ -31,8 +31,8 @@ export default function EditEnquetePage() {
 
         if (response.ok) {
           const data = await response.json();
-          if (data && data.enquetes) {
-            setEnquete(data.enquetes[0]); // Supondo que seja um array de enquetes
+          if (data && data.enquete) {
+            setEnquete(data.enquete); // Obtendo a enquete diretamente
           }
           setLoading(false);
         } else {
@@ -44,6 +44,7 @@ export default function EditEnquetePage() {
         setLoading(false);
       }
     };
+
 
     fetchEnquete();
   }, [id]);
