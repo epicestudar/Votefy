@@ -67,12 +67,18 @@ export default function Header() {
           </>
         ) : (
           <>
-            <a href="/login" title="Login" className={styles.link}>
+            <button
+              onClick={() => router.push("/login")}
+              className={`${styles.authButton} ${styles.loginButton}`}
+            >
               Login
-            </a>
-            <a href="/register" title="Registro" className={styles.link}>
+            </button>
+            <button
+              onClick={() => router.push("/register")}
+              className={`${styles.authButton} ${styles.registerButton}`}
+            >
               Registro
-            </a>
+            </button>
           </>
         )}
       </div>

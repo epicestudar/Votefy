@@ -21,15 +21,13 @@
     gap: 1rem;
     flex: 1;
     justify-content: flex-end;
-    /* Isso move os links para o canto direito */
 }
 
 .link {
     text-decoration: none;
-    color: #1DA1F2;
+    color: #1da1f2;
     font-size: 20px;
     margin-right: 1rem;
-    /* Espaçamento entre os links */
 }
 
 .logout {
@@ -50,4 +48,33 @@
 
 .logoutBtn:hover {
     background-color: #c82333;
+}
+
+/* Estilos para os botões de Login e Registro */
+.authButton {
+    border: 2px solid #1da1f2;
+    background-color: transparent;
+    color: #1da1f2;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.authButton:hover {
+    background-color: #1da1f2;
+    color: white;
+}
+
+/* Específico para o botão de login */
+.loginButton {
+    font-size: 18px;
+    margin-right: 0.5rem;
+}
+
+/* Específico para o botão de registro */
+.registerButton {
+    font-size: 18px;
+    margin-right: 0.5rem;
 }

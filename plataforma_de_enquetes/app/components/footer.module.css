@@ -105,7 +105,7 @@
 }
 
 .inputGroup button {
-    background-color: #7f37c9;
+    background-color: #37c4c9;
     border: none;
     color: white;
     /* Ajustado para melhorar a legibilidade */
@@ -125,7 +125,8 @@
 .footerCopyright {
     display: flex;
     justify-content: center;
-    background-color: #a1a5a7;
+    background-color: #3f3f3f;
+    color: white;
     font-size: 0.9rem;
     padding: 1.5rem;
     font-weight: 100;

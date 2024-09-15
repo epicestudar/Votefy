@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 /* Estilo geral para os formulários */
 form {
     max-width: 400px;
@@ -5,10 +7,12 @@ form {
     padding: 2rem;
     border: 1px solid #ddd;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #4c70bd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
+        font-weight: 700;
     /* Centraliza o conteúdo */
 }
 
@@ -39,7 +43,7 @@ form button {
     padding: 0.75rem;
     margin-top: 1.5rem;
     /* Adiciona espaçamento entre os inputs e o botão */
-    background-color: #0070f3;
+    background-color: #17bf63;
     color: white;
     border: none;
     border-radius: 4px;
@@ -49,18 +53,18 @@ form button {
 }
 
 form button:disabled {
-    background-color: #005bb5;
+    background-color: #1ae474;
     cursor: not-allowed;
 }
 
 form button:hover {
-    background-color: #005bb5;
+    background-color: #1ae474;
 }
 
 /* Título da página de login */
 .title {
     text-align: center;
-    color: #333;
+    color: #ffffff;
     margin-bottom: 2.5rem;
     /* Aumenta o espaçamento entre o título e o formulário */
     font-size: 2rem;

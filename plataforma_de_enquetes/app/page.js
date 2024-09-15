@@ -17,6 +17,7 @@ export default function Home() {
   return (
     <div>
       <Header />
+      <hr></hr>
       <main className={`container ${styles.main}`}>
         {/* Carrossel */}
         <div
@@ -27,7 +28,7 @@ export default function Home() {
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img
-                src="/img/carrossel/carro1.jpg"
+                src="/img/carrossel/img2.jpg"
                 className={`d-block w-100 ${styles.carouselImg}`}
                 alt="Imagem 1"
               />
@@ -35,7 +36,7 @@ export default function Home() {
             </div>
             <div className="carousel-item">
               <img
-                src="/img/carrossel/carro2.png"
+                src="/img/carrossel/img2.jpg"
                 className={`d-block w-100 ${styles.carouselImg}`}
                 alt="Imagem 2"
               />
@@ -43,7 +44,7 @@ export default function Home() {
             </div>
             <div className="carousel-item">
               <img
-                src="/img/carrossel/carro3.png"
+                src="/img/carrossel/img2.jpg"
                 className={`d-block w-100 ${styles.carouselImg}`}
                 alt="Imagem 3"
               />

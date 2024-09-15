@@ -16,6 +16,7 @@ export default function SuasEnquetesPage() {
     fotoDePerfil: "",
   });
   const [showModal, setShowModal] = useState(false);
+  const [enqueteToDelete, setEnqueteToDelete] = useState(null);
   const router = useRouter();
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -62,17 +63,25 @@ export default function SuasEnquetesPage() {
     fetchUserInfo();
   }, [router]);
 
-  const deleteEnquete = async (id) => {
+  const handleDeleteConfirmation = (id) => {
+    setEnqueteToDelete(id);
+    setShowModal(true);
+  };
+
+  const deleteEnquete = async () => {
+    if (!enqueteToDelete) return;
+
     const token = localStorage.getItem("token");
 
-    await fetch(`/api/enquetes/usuario?id=${id}`, {
+    await fetch(`/api/enquetes/usuario?id=${enqueteToDelete}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    setEnquetes(enquetes.filter((enquete) => enquete._id !== id));
+    setEnquetes(enquetes.filter((enquete) => enquete._id !== enqueteToDelete));
+    setShowModal(false); // Fecha o modal após exclusão
   };
 
   const handleEdit = (id) => {
@@ -210,7 +219,6 @@ export default function SuasEnquetesPage() {
                 onChange={handleSearchChange}
               />
               <button>Filtro</button>
-              
             </div>
           </div>
 
@@ -249,7 +257,7 @@ export default function SuasEnquetesPage() {
                       Editar
                     </button>
                     <button
-                      onClick={() => deleteEnquete(enquete._id)}
+                      onClick={() => handleDeleteConfirmation(enquete._id)} // Abre o modal para confirmação
                       className={styles.deleteButton}
                     >
                       Excluir
@@ -261,6 +269,23 @@ export default function SuasEnquetesPage() {
           </ul>
         </div>
       </div>
+      {/* Modal de confirmação para excluir enquete */}
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <p>Você tem certeza que deseja excluir esta enquete?</p>
+            <button onClick={deleteEnquete} className={styles.confirmButton}>
+              Sim
+            </button>
+            <button
+              onClick={() => setShowModal(false)}
+              className={styles.cancelButton}
+            >
+              Não
+            </button>
+          </div>
+        </div>
+      )}
       <Footer />
     </div>
   );
