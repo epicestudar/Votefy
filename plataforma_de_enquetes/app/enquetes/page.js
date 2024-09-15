@@ -213,7 +213,7 @@ export default function EnquetePage() {
           </div>
 
           {/* Listagem de enquetes filtrada */}
-          <ul className={styles["enquete-list"]}>
+          <ul className={styles.enqueteList}>
             {filteredEnquetes.map((enquete) => (
               <li key={enquete._id} className={styles.card}>
                 {enquete.imagem && (
@@ -228,17 +228,16 @@ export default function EnquetePage() {
                   <p className={styles.cardDescription}>{enquete.descricao}</p>
 
                   <p>
-                    <strong>Opções:</strong>
+                    <strong>Escolha sua opção:</strong>
                   </p>
-                  <ul className={styles["option-list"]}>
+                  <div className={styles.optionButtons}>
                     {enquete.opcoes.map((opcao, index) => (
-                      <li key={index} className={styles["option-item"]}>
+                      <button key={index} className={styles.optionButton}>
                         {opcao.texto} - {opcao.votos} votos
-                      </li>
+                      </button>
                     ))}
-                  </ul>
+                  </div>
                   <div className={styles.cardActions}>
-                    {/* Substituindo Editar e Excluir por "Ver mais" */}
                     <button
                       onClick={() => router.push(`/enquetes/${enquete._id}`)}
                       className={styles.verMaisButton}

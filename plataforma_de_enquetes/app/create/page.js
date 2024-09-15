@@ -111,7 +111,20 @@ export default function CriarEnquetePage() {
                  <option value="Nenhuma Categoria Selecionada">
                    Nenhuma Categoria Selecionada
                  </option>
-                 {/* Outras opções de categoria */}
+                 <option value="Tecnologia">Tecnologia</option>
+                 <option value="Entretenimento">Entretenimento</option>
+                 <option value="Esportes">Esportes</option>
+                 <option value="Viagens">Viagens</option>
+                 <option value="Comida">Comida</option>
+                 <option value="Estilo de Vida">Estilo de Vida</option>
+                 <option value="Moda e Beleza">Moda e Beleza</option>
+                 <option value="Educação">Educação</option>
+                 <option value="Política">Política</option>
+                 <option value="Saúde e Bem-Estar">Saúde e Bem-Estar</option>
+                 <option value="Finanças e Economia">
+                   Finanças e Economia
+                 </option>
+                 <option value="Curiosidades">Curiosidades</option>
                </Form.Select>
              </Form.Group>
 
