@@ -46,6 +46,8 @@ export const getUserEnquetes = async (req) => {
 };
 
 
+
+
 export const addEnquete = async (req) => {
   try {
     const { titulo, descricao, categoria, imagem, opcoes } = await req.json();

@@ -23,7 +23,7 @@ export default function EditEnquetePage() {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await fetch(`/api/enquetes?id=${id}`, {
+        const response = await fetch(`/api/enquetes/usuario?id=${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -57,7 +57,7 @@ export default function EditEnquetePage() {
     e.preventDefault();
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`/api/enquetes?id=${id}`, {
+    const response = await fetch(`/api/enquetes/usuario?id=${id}`, {
       // ID deve estar correto aqui
       method: "PUT",
       headers: {
