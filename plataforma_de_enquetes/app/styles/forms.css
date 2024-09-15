@@ -8,6 +8,8 @@ form {
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    text-align: center;
+    /* Centraliza o conteúdo */
 }
 
 form.hidden {
@@ -18,7 +20,8 @@ form.hidden {
 form input {
     width: 100%;
     padding: 0.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    /* Aumenta o espaçamento entre os inputs */
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
@@ -34,6 +37,8 @@ form input:focus {
 form button {
     width: 100%;
     padding: 0.75rem;
+    margin-top: 1.5rem;
+    /* Adiciona espaçamento entre os inputs e o botão */
     background-color: #0070f3;
     color: white;
     border: none;
@@ -52,29 +57,14 @@ form button:hover {
     background-color: #005bb5;
 }
 
-/* Estilos para a mensagem de redirecionamento */
-.redirectContainer {
-    max-width: 400px;
-    margin: 3rem auto;
-    padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    font-size: 1.25rem;
-}
-
-.redirectMessage {
-    color: #0070f3;
-    font-weight: bold;
-}
-
 /* Título da página de login */
-.form .title{
+.title {
     text-align: center;
     color: #333;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    /* Aumenta o espaçamento entre o título e o formulário */
+    font-size: 2rem;
+    /* Aumenta o tamanho do título */
 }
 
 /* Responsividade */
@@ -83,20 +73,10 @@ form button:hover {
         padding: 1.5rem;
         margin: 2rem 1rem;
     }
-
-    .redirectContainer {
-        padding: 1.5rem;
-        margin: 2rem 1rem;
-    }
 }
 
 @media (max-width: 480px) {
     form {
-        padding: 1rem;
-        margin: 1rem 0.5rem;
-    }
-
-    .redirectContainer {
         padding: 1rem;
         margin: 1rem 0.5rem;
     }

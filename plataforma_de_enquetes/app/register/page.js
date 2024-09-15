@@ -12,10 +12,13 @@ export default function Register() {
   const [senha, setSenha] = useState("");
   const [cidade, setCidade] = useState("");
   const [fotoDePerfil, setFotoDePerfil] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o efeito de carregamento
+  const [showRedirectMessage, setShowRedirectMessage] = useState(false);
   const router = useRouter();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // Inicia o efeito de carregamento
 
     const response = await fetch("/api/auth/register", {
       method: "POST",
@@ -24,8 +27,12 @@ export default function Register() {
     });
 
     if (response.ok) {
-      router.push("/login");
+      setShowRedirectMessage(true); // Mostra a mensagem de redirecionamento
+      setTimeout(() => {
+        router.push("/login"); // Redireciona para a página de login
+      }, 2000); // Duração do efeito visual
     } else {
+      setIsSubmitting(false); // Encerra o efeito de carregamento
       alert("Erro ao registrar");
     }
   };
@@ -34,43 +41,61 @@ export default function Register() {
     <div>
       <Header />
       <hr></hr>
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Cidade"
-          value={cidade}
-          onChange={(e) => setCidade(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Foto de Perfil (URL)"
-          value={fotoDePerfil}
-          onChange={(e) => setFotoDePerfil(e.target.value)}
-        />
-        <button type="submit">Registrar</button>
-      </form>
+      <div className={styles.container}>
+        <form onSubmit={handleRegister} className={styles.form}>
+          <h1 className={styles.title}>
+            {showRedirectMessage
+              ? "Redirecionando para a página de login..."
+              : "Registrar"}
+          </h1>
+          {!showRedirectMessage && (
+            <>
+              <input
+                type="text"
+                placeholder="Nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                required
+                disabled={isSubmitting}
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={isSubmitting}
+              />
+              <input
+                type="password"
+                placeholder="Senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+                disabled={isSubmitting}
+              />
+              <input
+                type="text"
+                placeholder="Cidade"
+                value={cidade}
+                onChange={(e) => setCidade(e.target.value)}
+                required
+                disabled={isSubmitting}
+              />
+              <input
+                type="text"
+                placeholder="Foto de Perfil (URL)"
+                value={fotoDePerfil}
+                onChange={(e) => setFotoDePerfil(e.target.value)}
+                disabled={isSubmitting}
+              />
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Processando..." : "Registrar"}
+              </button>
+            </>
+          )}
+        </form>
+      </div>
       <Footer />
     </div>
   );
