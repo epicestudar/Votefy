@@ -161,6 +161,7 @@ classDiagram
         +string senha
         +string cidade
         +string fotoDePerfil
+        +get()
         +post()
         +put()
         +delete()
@@ -185,7 +186,7 @@ classDiagram
         +int id
         +int enqueteId
         +int usuarioId
-        +string opçãoVotada
+        +string[i] opçãoVotada
         +date dataQueVotou
         +get()
         +post()
