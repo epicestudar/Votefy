@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css"; // Importa o CSS do Bootstrap
+// import "../styles/editProfile.module.css";
 
 export default function EditProfilePage() {
   const [userData, setUserData] = useState({
