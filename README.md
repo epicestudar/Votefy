@@ -215,7 +215,7 @@ flowchart TD
     
     C -->|Acompanhar Resultados| H(Visualizar Resultados das Enquetes)
     
-    I[Criador da Enquete] -->|Gerenciar Enquetes| J(Gerenciar Enquetes dos Usuários)
+    I[Criador da Enquete] -->|Gerenciar Enquetes| J(Gerenciar Enquetes que ele criou)
     J -->|Editar Enquete| K(Editar Detalhes da Enquete)
     J -->|Excluir Enquete| L(Excluir Enquete)
     
