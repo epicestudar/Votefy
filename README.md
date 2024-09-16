@@ -161,10 +161,10 @@ classDiagram
         +string senha
         +string cidade
         +string fotoDePerfil
-        +get()
-        +post()
-        +put()
-        +delete()
+        +informaçõesDoUsuario()
+        +fazerLogin()
+        +editarUsuario()
+        +apagarUsuario()
     }
 
     class Enquete {
@@ -176,9 +176,9 @@ classDiagram
         +string imagem
         +date dataDeCriação
         +int usuarioId
-        +get()
-        +post()
-        +put()
+        +create()
+        +read()
+        +edit()
         +delete()
     }
 
@@ -188,9 +188,9 @@ classDiagram
         +int usuarioId
         +string[i] opçãoVotada
         +date dataQueVotou
-        +get()
-        +post()
-        +put()
+        +read()
+        +create()
+        +edit()
         +delete()
     }
 
