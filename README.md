@@ -161,7 +161,7 @@ classDiagram
         +string senha
         +string cidade
         +string fotoDePerfil
-        +informaçõesDoUsuario()
+        +obterInformaçõesDoUsuario()
         +fazerLogin()
         +editarUsuario()
         +apagarUsuario()
