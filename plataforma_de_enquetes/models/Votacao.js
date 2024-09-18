@@ -12,13 +12,13 @@ const VotacaoSchema = new MongooseError.Schema({
     required: true,
   },
   opcaoVotada: {
-    type: String,
-    required: true
+    type: Number, // Armazena o índice da opção votada
+    required: true,
   },
   dataQueVotou: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 const Votacao =
