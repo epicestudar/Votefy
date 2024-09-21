@@ -13,6 +13,7 @@
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "mongoose": "^8.6.1",
     "next": "14.2.9",
     "react": "^18",

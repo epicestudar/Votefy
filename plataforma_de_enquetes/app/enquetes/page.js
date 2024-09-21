@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styles from "../styles/enquetes.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { decode } from "jsonwebtoken";
 
 export default function EnquetePage() {
   const [enquetes, setEnquetes] = useState([]);
@@ -53,9 +54,13 @@ export default function EnquetePage() {
 
       if (response.ok) {
         const data = await response.json();
-        setUserInfo(data);
+        setUserInfo(data); // Certifique-se de que 'data' contém o _id
+      } else {
+        console.error("Erro ao obter informações do usuário");
+        router.push("/login");
       }
     };
+
 
     fetchEnquetes();
     fetchUserInfo();
@@ -108,6 +113,43 @@ export default function EnquetePage() {
        alert("Erro ao excluir perfil");
      }
    };
+
+  const handleVote = async (enqueteId, opcaoIndex) => {
+    const token = localStorage.getItem("token");
+
+    // Decodifica o token para extrair o ID do usuário
+    const decodedToken = decode(token);
+    const usuarioId = decodedToken?.userId; // Certifique-se de que o token contém userId
+
+    if (!usuarioId) {
+      alert("Erro: usuário não encontrado. Faça login novamente.");
+      router.push("/login");
+      return;
+    }
+
+    const response = await fetch("/api/votacao", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        enqueteId,
+        usuarioId, // Passando o ID do usuário autenticado
+        opcaoVotada: opcaoIndex,
+      }),
+    });
+
+    if (response.ok) {
+      alert("Voto registrado com sucesso!");
+    } else {
+      alert("Erro ao registrar voto");
+    }
+  };
+
+
+
+
 
   return (
     <div>
@@ -232,11 +274,16 @@ export default function EnquetePage() {
                   </p>
                   <div className={styles.optionButtons}>
                     {enquete.opcoes.map((opcao, index) => (
-                      <button key={index} className={styles.optionButton}>
+                      <button
+                        key={index}
+                        onClick={() => handleVote(enquete._id, index)}
+                        className={styles.optionButton}
+                      >
                         {opcao.texto} - {opcao.votos} votos
                       </button>
                     ))}
                   </div>
+
                   <div className={styles.cardActions}>
                     <button
                       onClick={() => router.push(`/enquetes/${enquete._id}`)}

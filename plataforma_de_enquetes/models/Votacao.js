@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const VotacaoSchema = new MongooseError.Schema({
+const VotacaoSchema = new mongoose.Schema({
   enqueteId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Enquete",
