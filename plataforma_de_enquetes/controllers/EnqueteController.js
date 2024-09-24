@@ -1,8 +1,7 @@
 import Enquete from "@/models/Enquete";
+import Votacao from "@/models/Votacao";
 import connectMongo from "@/utils/dbConnect";
 import mongoose from "mongoose";
-
-
 
 export async function getEnqueteById(req) {
   try {
@@ -34,14 +33,33 @@ export async function getEnqueteById(req) {
   }
 }
 
-// Função para obter todas as enquetes que o usuário NÃO criou
+// Função para obter todas as enquetes que o usuário NÃO criou, com verificação de voto
 export const getEnquetesExcludingUser = async (req) => {
   await connectMongo();
   try {
     const usuarioId = req.user.userId; // ID do usuário autenticado
+
     // Busca todas as enquetes exceto as criadas pelo usuário logado
     const enquetes = await Enquete.find({ usuarioId: { $ne: usuarioId } });
-    return new Response(JSON.stringify({ enquetes }), {
+
+    // Para cada enquete, verificar se o usuário já votou
+    const enquetesComStatusVoto = await Promise.all(
+      enquetes.map(async (enquete) => {
+        // Verifica se há um registro de votação com o ID da enquete e do usuário
+        const usuarioJaVotou = await Votacao.exists({
+          enqueteId: enquete._id,
+          usuarioId: usuarioId,
+        });
+
+        // Retorna os dados da enquete junto com o status de voto
+        return {
+          ...enquete.toObject(),
+          usuarioJaVotou: !!usuarioJaVotou, // Retorna true se já votou, false caso contrário
+        };
+      })
+    );
+
+    return new Response(JSON.stringify({ enquetes: enquetesComStatusVoto }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
@@ -74,10 +92,6 @@ export const getUserEnquetes = async (req) => {
     );
   }
 };
-
-
-
-
 
 export const addEnquete = async (req) => {
   try {

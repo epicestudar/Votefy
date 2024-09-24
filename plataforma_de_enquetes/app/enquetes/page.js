@@ -18,6 +18,7 @@ export default function EnquetePage() {
     fotoDePerfil: "",
   });
   const [showModal, setShowModal] = useState(false);
+  const [votos, setVotos] = useState({}); // Novo estado para armazenar os votos
   const router = useRouter();
 
   useEffect(() => {
@@ -36,7 +37,16 @@ export default function EnquetePage() {
 
       if (response.ok) {
         const data = await response.json();
-        setEnquetes(data.enquetes || []); // Garante que `enquetes` seja um array
+        setEnquetes(data.enquetes || []);
+
+        // Atualiza os votos para as enquetes que o usuário já votou
+        const votosAnteriores = {};
+        data.enquetes.forEach((enquete) => {
+          if (enquete.usuarioJaVotou) {
+            votosAnteriores[enquete._id] = enquete.opcoes;
+          }
+        });
+        setVotos(votosAnteriores);
       } else {
         router.push("/login");
       }
@@ -60,7 +70,6 @@ export default function EnquetePage() {
         router.push("/login");
       }
     };
-
 
     fetchEnquetes();
     fetchUserInfo();
@@ -92,27 +101,27 @@ export default function EnquetePage() {
     enquete.titulo.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-   const handleEditProfile = () => {
-     router.push("/edit-profile");
-   };
+  const handleEditProfile = () => {
+    router.push("/edit-profile");
+  };
 
-   const handleDelete = async () => {
-     const token = localStorage.getItem("token");
+  const handleDelete = async () => {
+    const token = localStorage.getItem("token");
 
-     const response = await fetch("/api/user", {
-       method: "DELETE",
-       headers: {
-         Authorization: `Bearer ${token}`,
-       },
-     });
+    const response = await fetch("/api/user", {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-     if (response.ok) {
-       alert("Perfil excluído com sucesso!");
-       router.push("/login"); // Redireciona para a página de login após exclusão
-     } else {
-       alert("Erro ao excluir perfil");
-     }
-   };
+    if (response.ok) {
+      alert("Perfil excluído com sucesso!");
+      router.push("/login"); // Redireciona para a página de login após exclusão
+    } else {
+      alert("Erro ao excluir perfil");
+    }
+  };
 
   const handleVote = async (enqueteId, opcaoIndex) => {
     const token = localStorage.getItem("token");
@@ -141,15 +150,21 @@ export default function EnquetePage() {
     });
 
     if (response.ok) {
+      const data = await response.json();
+      setVotos((prevVotos) => ({
+        ...prevVotos,
+        [enqueteId]: data.enquete.opcoes, // Atualiza o estado de votos com as novas opções votadas
+      }));
       alert("Voto registrado com sucesso!");
     } else {
       alert("Erro ao registrar voto");
     }
   };
 
-
-
-
+const jaVotou = (enqueteId) => {
+  // Verifica se o usuário já votou nesta enquete
+  return !!votos[enqueteId]; // Se houver votos para essa enquete, o usuário já votou
+};
 
   return (
     <div>
@@ -269,20 +284,30 @@ export default function EnquetePage() {
                   <h2 className={styles.cardTitle}>{enquete.titulo}</h2>
                   <p className={styles.cardDescription}>{enquete.descricao}</p>
 
-                  <p>
-                    <strong>Escolha sua opção:</strong>
-                  </p>
-                  <div className={styles.optionButtons}>
-                    {enquete.opcoes.map((opcao, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleVote(enquete._id, index)}
-                        className={styles.optionButton}
-                      >
-                        {opcao.texto} - {opcao.votos} votos
-                      </button>
-                    ))}
-                  </div>
+                  {jaVotou(enquete._id) ? (
+                    // Exibe os resultados se o usuário já votou
+                    <div>
+                      <h4>Resultados:</h4>
+                      {votos[enquete._id].map((opcao, index) => (
+                        <p key={index}>
+                          {opcao.texto}: {opcao.votos} votos
+                        </p>
+                      ))}
+                    </div>
+                  ) : (
+                    // Exibe os botões de votação se o usuário não votou
+                    <div className={styles.optionButtons}>
+                      {enquete.opcoes.map((opcao, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleVote(enquete._id, index)}
+                          className={styles.optionButton}
+                        >
+                          {opcao.texto}
+                        </button>
+                      ))}
+                    </div>
+                  )}
 
                   <div className={styles.cardActions}>
                     <button
@@ -301,5 +326,4 @@ export default function EnquetePage() {
       <Footer />
     </div>
   );
-
 }

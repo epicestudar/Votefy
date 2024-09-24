@@ -4,11 +4,11 @@ import connectMongo from "@/utils/dbConnect";
 
 // Função que lida com o método POST
 export async function POST(req) {
-  await connectMongo(); // Conectar ao banco de dados
+  await connectMongo();
 
   try {
-     const { enqueteId, usuarioId, opcaoVotada } = await req.json();
-     console.log("Dados recebidos: ", { enqueteId, usuarioId, opcaoVotada });
+    const { enqueteId, usuarioId, opcaoVotada } = await req.json();
+    console.log("Dados recebidos: ", { enqueteId, usuarioId, opcaoVotada });
 
     // Verificar se o usuário já votou nessa enquete
     const votoExistente = await Votacao.findOne({ enqueteId, usuarioId });
@@ -22,7 +22,6 @@ export async function POST(req) {
     // Atualizar a contagem de votos na opção selecionada
     const enquete = await Enquete.findById(enqueteId);
     if (!enquete) {
-      console.error("Enquete não encontrada com o ID:", enqueteId);
       return new Response(
         JSON.stringify({ message: "Enquete não encontrada" }),
         { status: 404 }
@@ -30,33 +29,21 @@ export async function POST(req) {
     }
 
     if (!enquete.opcoes[opcaoVotada]) {
-      console.error("Opção votada inválida:", opcaoVotada);
       return new Response(
         JSON.stringify({ message: "Opção votada inválida" }),
-        {
-          status: 400,
-        }
+        { status: 400 }
       );
     }
 
     enquete.opcoes[opcaoVotada].votos += 1;
     await enquete.save();
 
-    try {
-      const novaVotacao = new Votacao({ enqueteId, usuarioId, opcaoVotada });
-      await novaVotacao.save();
-    } catch (error) {
-      console.error("Erro ao salvar a votação:", error);
-      return new Response(
-        JSON.stringify({ message: "Erro ao salvar a votação" }),
-        { status: 500 }
-      );
-    }
+    // Salvar o registro de votação
+    const novaVotacao = new Votacao({ enqueteId, usuarioId, opcaoVotada });
+    await novaVotacao.save();
 
-    return new Response(
-      JSON.stringify({ message: "Voto registrado com sucesso" }),
-      { status: 200 }
-    );
+    // Retornar a enquete atualizada com os votos
+    return new Response(JSON.stringify({ enquete }), { status: 200 });
   } catch (error) {
     return new Response(
       JSON.stringify({ message: "Erro ao registrar votação", error }),
