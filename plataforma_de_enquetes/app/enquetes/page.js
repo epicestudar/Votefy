@@ -128,7 +128,7 @@ export default function EnquetePage() {
 
     // Decodifica o token para extrair o ID do usuário
     const decodedToken = decode(token);
-    const usuarioId = decodedToken?.userId; // Certifique-se de que o token contém userId
+    const usuarioId = decodedToken?.userId;
 
     if (!usuarioId) {
       alert("Erro: usuário não encontrado. Faça login novamente.");
@@ -144,22 +144,27 @@ export default function EnquetePage() {
       },
       body: JSON.stringify({
         enqueteId,
-        usuarioId, // Passando o ID do usuário autenticado
+        usuarioId,
         opcaoVotada: opcaoIndex,
       }),
     });
 
     if (response.ok) {
       const data = await response.json();
+
+      // Atualiza os votos no estado com as novas opções votadas
       setVotos((prevVotos) => ({
         ...prevVotos,
-        [enqueteId]: data.enquete.opcoes, // Atualiza o estado de votos com as novas opções votadas
+        [enqueteId]: data.enquete.opcoes,
       }));
+
+      // Mostra os resultados instantaneamente após o voto
       alert("Voto registrado com sucesso!");
     } else {
       alert("Erro ao registrar voto");
     }
   };
+
 
 const jaVotou = (enqueteId) => {
   // Verifica se o usuário já votou nesta enquete
@@ -285,8 +290,12 @@ const jaVotou = (enqueteId) => {
                   <p className={styles.cardDescription}>{enquete.descricao}</p>
 
                   {jaVotou(enquete._id) ? (
-                    // Exibe os resultados se o usuário já votou
-                    <div>
+                    // Mostra os resultados com animação
+                    <div
+                      className={`resultados ${
+                        votos[enquete._id] ? "mostrar" : ""
+                      }`}
+                    >
                       <h4>Resultados:</h4>
                       {votos[enquete._id].map((opcao, index) => (
                         <p key={index}>
@@ -295,7 +304,7 @@ const jaVotou = (enqueteId) => {
                       ))}
                     </div>
                   ) : (
-                    // Exibe os botões de votação se o usuário não votou
+                    // Mostra os botões de votação
                     <div className={styles.optionButtons}>
                       {enquete.opcoes.map((opcao, index) => (
                         <button

@@ -365,3 +365,12 @@
     background-color: #218838;
     transform: scale(1.05);
 }
+
+.resultados {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.resultados.mostrar {
+    opacity: 1;
+}
