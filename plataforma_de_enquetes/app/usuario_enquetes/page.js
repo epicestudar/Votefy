@@ -15,7 +15,8 @@ export default function SuasEnquetesPage() {
     cidade: "",
     fotoDePerfil: "",
   });
-  const [showModal, setShowModal] = useState(false);
+  const [showDeleteEnqueteModal, setShowDeleteEnqueteModal] = useState(false); // Modal para excluir enquete
+  const [showDeleteProfileModal, setShowDeleteProfileModal] = useState(false); // Modal para excluir perfil
   const [enqueteToDelete, setEnqueteToDelete] = useState(null);
   const router = useRouter();
 
@@ -65,7 +66,7 @@ export default function SuasEnquetesPage() {
 
   const handleDeleteConfirmation = (id) => {
     setEnqueteToDelete(id);
-    setShowModal(true);
+    setShowDeleteEnqueteModal(true);
   };
 
   const deleteEnquete = async () => {
@@ -81,7 +82,7 @@ export default function SuasEnquetesPage() {
     });
 
     setEnquetes(enquetes.filter((enquete) => enquete._id !== enqueteToDelete));
-    setShowModal(false); // Fecha o modal após exclusão
+    setShowDeleteEnqueteModal(false); // Fecha o modal após exclusão
   };
 
   const handleEdit = (id) => {
@@ -101,7 +102,7 @@ export default function SuasEnquetesPage() {
     router.push("/edit-profile");
   };
 
-  const handleDelete = async () => {
+  const handleDeleteProfile = async () => {
     const token = localStorage.getItem("token");
 
     const response = await fetch("/api/user", {
@@ -144,25 +145,25 @@ export default function SuasEnquetesPage() {
                   Editar Perfil
                 </button>
                 <button
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setShowDeleteProfileModal(true)} // Abre o modal para deletar perfil
                   className="btn btn-danger deleteButton"
                 >
                   Deletar Perfil
                 </button>
 
-                {/* Modal de confirmação */}
-                {showModal && (
+                {/* Modal de confirmação para excluir perfil */}
+                {showDeleteProfileModal && (
                   <div className={styles.modal}>
                     <div className={styles.modalContent}>
                       <p>Você tem certeza que deseja apagar o seu perfil?</p>
                       <button
-                        onClick={handleDelete}
+                        onClick={handleDeleteProfile}
                         className={styles.confirmButton}
                       >
                         Sim
                       </button>
                       <button
-                        onClick={() => setShowModal(false)}
+                        onClick={() => setShowDeleteProfileModal(false)}
                         className={styles.cancelButton}
                       >
                         Não
@@ -257,7 +258,7 @@ export default function SuasEnquetesPage() {
                       Editar
                     </button>
                     <button
-                      onClick={() => handleDeleteConfirmation(enquete._id)} // Abre o modal para confirmação
+                      onClick={() => handleDeleteConfirmation(enquete._id)} // Abre o modal para confirmação de enquete
                       className={styles.deleteButton}
                     >
                       Excluir
@@ -270,7 +271,7 @@ export default function SuasEnquetesPage() {
         </div>
       </div>
       {/* Modal de confirmação para excluir enquete */}
-      {showModal && (
+      {showDeleteEnqueteModal && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <p>Você tem certeza que deseja excluir esta enquete?</p>
@@ -278,7 +279,7 @@ export default function SuasEnquetesPage() {
               Sim
             </button>
             <button
-              onClick={() => setShowModal(false)}
+              onClick={() => setShowDeleteEnqueteModal(false)}
               className={styles.cancelButton}
             >
               Não
