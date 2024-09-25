@@ -16,6 +16,8 @@ export default function Register() {
   const [showRedirectMessage, setShowRedirectMessage] = useState(false);
   const router = useRouter();
 
+  // davizao esteve aqui
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setIsSubmitting(true); // Inicia o efeito de carregamento
@@ -84,7 +86,7 @@ export default function Register() {
               />
               <input
                 type="text"
-                placeholder="Foto de Perfil (URL)"
+                placeholder="Foto de Perfil - URL (Opcional)"
                 value={fotoDePerfil}
                 onChange={(e) => setFotoDePerfil(e.target.value)}
                 disabled={isSubmitting}

@@ -28,6 +28,10 @@ export default function Header() {
     router.push("/usuario_enquetes");
   };
 
+  const dashboardEnquetes = () => {
+    router.push("/enquetes")
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -40,6 +44,17 @@ export default function Header() {
         {isLoggedIn ? (
           <>
             <a
+              href="/dashboard-enquetes"
+              title="Dashboard"
+              className={styles.link}
+              onClick={(e) => {
+                e.preventDefault();
+                dashboardEnquetes();
+              }}
+            >
+              Dashboard
+            </a>
+            <a
               href="/criar-enquete"
               title="Criar Enquete"
               className={styles.link}
@@ -50,19 +65,11 @@ export default function Header() {
             >
               Criar Enquete
             </a>
-            <a
-              href="/enquetes-usuario"
-              title="Suas Enquetes"
-              className={styles.link}
-              onClick={(e) => {
-                e.preventDefault();
-                enquetesDoUsuario();
-              }}
-            >
+            <a href="/enquetes-usuario" title="Suas Enquetes" className={styles.link} onClick={(e) => {
+              e.preventDefault();
+              enquetesDoUsuario();
+            }}>
               Suas Enquetes
-            </a>
-            <a href="/historico" title="Histórico" className={styles.link}>
-              Histórico
             </a>
           </>
         ) : (

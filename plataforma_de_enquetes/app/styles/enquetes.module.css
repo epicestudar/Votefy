@@ -182,9 +182,14 @@
 
 .cardImage {
     width: 100%;
-    height: 150px;
+    height: auto;
+    max-height: 300px;
+    /* Limite de altura máximo para a imagem */
     object-fit: cover;
+    /* A imagem será redimensionada para cobrir completamente o elemento, mantendo a proporção */
     margin-bottom: 20px;
+    border-radius: 8px;
+    /* Adiciona bordas arredondadas para melhorar o visual */
 }
 
 .cardContent {
