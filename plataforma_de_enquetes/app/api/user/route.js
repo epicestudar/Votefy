@@ -1,4 +1,5 @@
 import User from "@/models/User";
+import Enquete from "@/models/Enquete";
 import connectMongo from "@/utils/dbConnect";
 import jwt from "jsonwebtoken";
 
@@ -130,10 +131,27 @@ export async function DELETE(request) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // 1. Encontre o usuário
+    const user = await User.findById(decoded.userId);
+    if (!user) {
+      return new Response(
+        JSON.stringify({ message: "Usuário não encontrado" }),
+        {
+          status: 404,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    // 2. Remova todas as enquetes associadas ao usuário
+    await Enquete.deleteMany({ usuarioId: decoded.userId });
+
+    // 3. Remova o usuário
     await User.findByIdAndDelete(decoded.userId);
 
     return new Response(
-      JSON.stringify({ message: "Usuário deletado com sucesso" }),
+      JSON.stringify({ message: "Usuário e enquetes deletados com sucesso" }),
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
