@@ -6,6 +6,8 @@
     background-color: #f8f9fa;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
+    flex-wrap: wrap;
+    /* Permite que os itens se movam para a próxima linha em telas menores */
 }
 
 .logo {
@@ -77,4 +79,49 @@
 .registerButton {
     font-size: 18px;
     margin-right: 0.5rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        /* Muda para coluna em telas pequenas */
+        align-items: flex-start;
+        /* Alinha os itens à esquerda */
+    }
+
+    .logo {
+        margin-bottom: 1rem;
+        /* Adiciona espaço abaixo do logo */
+    }
+
+    .fields {
+        flex-direction: column;
+        /* Muda a direção para coluna */
+        align-items: flex-end;
+        /* Alinha os itens à direita */
+        width: 100%;
+        /* Garante que ocupe toda a largura disponível */
+    }
+
+    .link {
+        font-size: 18px;
+        /* Ajusta o tamanho da fonte */
+        margin: 0.5rem 0;
+        /* Adiciona margem em cima e embaixo */
+    }
+
+    .logout {
+        width: 100%;
+        /* Garante que ocupe toda a largura disponível */
+        justify-content: flex-start;
+        /* Alinha à esquerda */
+        margin-top: 1rem;
+        /* Adiciona espaço acima */
+    }
+
+    .logoutBtn {
+        width: 100%;
+        /* Faz o botão ocupar toda a largura */
+    }
 }

@@ -262,7 +262,7 @@ const jaVotou = (enqueteId) => {
         {/* Conteúdo principal */}
         <div className={styles.mainContent}>
           <div className={styles.mainHeader}>
-            <h1>Enquetes</h1>
+            <h1>Dashboard de Enquetes</h1>
             <div className={styles.controls}>
               <input
                 type="text"

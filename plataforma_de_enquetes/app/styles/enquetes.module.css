@@ -5,6 +5,8 @@
 .container {
     display: flex;
     color: black;
+    flex-wrap: wrap;
+    /* Permite que os itens se movam para a próxima linha em telas menores */
 }
 
 /* Estilos para a sidebar à esquerda */
@@ -15,7 +17,8 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    height: 900px;
+    height: auto;
+    /* Permite que a altura se ajuste conforme o conteúdo */
     position: relative;
 }
 
@@ -109,7 +112,6 @@
     font-weight: 600;
 }
 
-
 .itemIcon {
     width: 40px;
     margin-right: 10px;
@@ -172,10 +174,12 @@
     padding: 20px;
     transition: transform 0.3s ease;
 }
+
 .card:hover {
     transform: scale(1.02);
     /* Leve animação de aumento ao passar o mouse */
 }
+
 .card h2 {
     color: #1DA1F2;
 }
@@ -219,6 +223,7 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
 .cardActions {
     margin-top: 20px;
 }
@@ -273,15 +278,15 @@
 }
 
 .deleteButton {
-        padding: 10px 20px;
-        border: none;
-        margin: 5px;
-        background-color: rgb(255, 0, 0);
-        color: white;
-        border-radius: 4px;
-        cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    margin: 5px;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
 }
-/* styles.module.css */
+
 /* Botão de editar perfil */
 .editButton {
     border: 1px solid #ffc107;
@@ -321,10 +326,12 @@
     /* Sombra suave */
 }
 
+
 /* Adiciona um espaço entre os botões e o restante do conteúdo */
 .info button {
     margin-bottom: 10px;
 }
+
 .enqueteList {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -333,23 +340,6 @@
     padding: 0;
     margin: 0;
 }
-
-.verMaisButton {
-    padding: 10px 20px;
-    background-color: #1DA1F2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 15px;
-}
-
-.verMaisButton:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
 .optionButtons {
     display: flex;
     flex-direction: column;
@@ -370,12 +360,113 @@
     background-color: #218838;
     transform: scale(1.05);
 }
-
-.resultados {
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
+.verMaisButton {
+    padding: 10px 20px;
+    background-color: #1DA1F2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 15px;
 }
 
-.resultados.mostrar {
-    opacity: 1;
+.verMaisButton:hover {
+    background-color: #0d8bc2;
+    /* Cor ao passar o mouse */
+    transform: scale(1.05);
+    /* Leve aumento ao passar o mouse */
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        /* Sidebar ocupa toda a largura em telas menores */
+        padding: 20px;
+        /* Reduz o padding */
+        box-shadow: none;
+        /* Remove a sombra em telas menores */
+    }
+
+    .mainContent {
+        width: 100%;
+        /* O conteúdo principal ocupa toda a largura */
+        padding: 10px;
+        /* Reduz o padding */
+    }
+
+    .history h3 {
+        font-size: 24px;
+        /* Reduz o tamanho do título do histórico */
+    }
+
+    .historySections {
+        display: flex;
+        flex-direction: column;
+        /* Muda a direção para coluna */
+    }
+
+    .card {
+        margin-bottom: 15px;
+        /* Espaço entre os cards */
+        flex-direction: column;
+        /* Cards são empilhados verticalmente */
+    }
+
+    .controls {
+        flex-direction: column;
+        /* Coloca controles em coluna */
+    }
+
+    .controls input,
+    .controls button {
+        margin: 5px 0;
+        /* Adiciona espaço entre os inputs e botões */
+        width: 100%;
+        /* Campos ocupam toda a largura */
+    }
+
+    .cardImage {
+        max-height: 200px;
+        /* Limita a altura das imagens em telas menores */
+    }
+
+    .verMaisButton {
+        width: 100%;
+        /* Botão "Ver mais" ocupa toda a largura */
+    }
+
+    .editButton,
+    .deleteButton {
+        width: 100%;
+        /* Botões ocupam toda a largura em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .mainHeader h1 {
+        font-size: 28px;
+        /* Tamanho reduzido para cabeçalhos */
+    }
+
+    .info h2 {
+        font-size: 16px;
+        /* Tamanho reduzido para h2 */
+    }
+
+    .info p {
+        font-size: 14px;
+        /* Tamanho reduzido para parágrafos */
+    }
+
+    .cardTitle {
+        font-size: 20px;
+        /* Tamanho reduzido para títulos de card */
+    }
+
+    .cardDescription {
+        font-size: 14px;
+        /* Tamanho reduzido para descrições de card */
+    }
 }
