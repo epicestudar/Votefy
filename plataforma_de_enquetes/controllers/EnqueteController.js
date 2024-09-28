@@ -96,7 +96,7 @@ export const getUserEnquetes = async (req) => {
 export const addEnquete = async (req) => {
   try {
     const { titulo, descricao, categoria, imagem, opcoes } = await req.json();
-    const userId = req.user?.userId; // Garantir que userId está acessível
+    const userId = req.user?.userId;
 
     console.log("Dados recebidos para criação de enquete:", {
       titulo,
@@ -115,15 +115,35 @@ export const addEnquete = async (req) => {
 
     await connectMongo();
 
-    // Verificar e formatar `opcoes` para garantir que seja um array de objetos com `texto` e `votos`
-    const formattedOpcoes = Array.isArray(opcoes)
-      ? opcoes.map((opcao) => ({
-          texto: opcao.texto || "",
-          votos: opcao.votos || 0,
-        }))
-      : [];
+    // Verificações dos campos obrigatórios
+    const missingFields = [];
+    if (!titulo) missingFields.push("título");
+    if (!categoria) missingFields.push("categoria");
+    if (!opcoes || !Array.isArray(opcoes) || opcoes.length === 0) {
+      missingFields.push("opções");
+    } else {
+      // Verificar se todas as opções têm texto
+      opcoes.forEach((opcao, index) => {
+        if (!opcao.texto) missingFields.push(`opção ${index + 1} (texto)`);
+      });
+    }
 
-    console.log("Opções formatadas:", formattedOpcoes);
+    if (missingFields.length > 0) {
+      return new Response(
+        JSON.stringify({
+          message:
+            "Preencha todos os campos obrigatórios: " +
+            missingFields.join(", "),
+        }),
+        { status: 400 }
+      );
+    }
+
+    // Formatação de opcoes
+    const formattedOpcoes = opcoes.map((opcao) => ({
+      texto: opcao.texto,
+      votos: opcao.votos || 0,
+    }));
 
     // Criar a nova enquete
     const novaEnquete = new Enquete({
@@ -132,7 +152,7 @@ export const addEnquete = async (req) => {
       categoria,
       imagem,
       opcoes: formattedOpcoes,
-      usuarioId: userId, // Definindo usuário ID
+      usuarioId: userId,
     });
 
     const resultado = await novaEnquete.save();
@@ -154,6 +174,7 @@ export const addEnquete = async (req) => {
     );
   }
 };
+
 
 // Função para atualizar uma enquete
 export const updateEnquete = async (req, id) => {

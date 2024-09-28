@@ -19,6 +19,8 @@ export default function EnquetePage() {
   });
   const [showModal, setShowModal] = useState(false);
   const [votos, setVotos] = useState({}); // Novo estado para armazenar os votos
+  
+
   const router = useRouter();
 
   useEffect(() => {
